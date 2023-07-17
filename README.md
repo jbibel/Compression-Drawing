@@ -1,6 +1,6 @@
 # Compression Drawing
 
-*July 17 2023 note: I have covid right now and I'm having a hard time focusing on writing so much info all at once. I am committing this as is just so I can get it out now. More text such as a tour will be added when my brain is not full of mucus.
+*July 17 2023 note: I have covid right now and I'm having a hard time focusing on writing so much info all at once. I am committing this as is just so I can get it out now. More text such as a tour will be added when my brain is not full of mucus.*
 
 ## What is this exactly?
 Compression Drawing is a drawing tool that explores JPEG compression artifacts and recursive image processing.
