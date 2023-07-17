@@ -1,0 +1,32 @@
+{
+  "name": "my-p5js-app",
+  "version": "1.0.0",
+  "description": "trying to make this thing after i messed up a 7 year old template i found on github",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "meFungus",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.2.1",
+    "@electron-forge/maker-deb": "^6.2.1",
+    "@electron-forge/maker-rpm": "^6.2.1",
+    "@electron-forge/maker-squirrel": "^6.2.1",
+    "@electron-forge/maker-zip": "^6.2.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
+    "electron": "^25.2.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "electronify-server": "^0.6.2",
+    "express": "^4.18.2",
+    "gm": "^1.25.0",
+    "imagemin": "^8.0.1",
+    "request": "^2.88.2",
+    "socket.io": "^4.7.1",
+    "socket.io-client": "^4.6.0"
+  }
+}

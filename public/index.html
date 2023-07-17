@@ -1,0 +1,194 @@
+<!--index.html-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src http://127.0.0.1:8888 ws://127.0.0.1:8888"> -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; connect-src 'self'"> -->
+
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
+    <!-- <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe inline'; connect-src http://127.0.0.1:8888 ws://127.0.0.1:8888 " /> -->
+
+      <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' ws://http://127.0.0.1:8888/socket.io/; script-src 'self' ws://http://127.0.0.1:8888/socket.io/">
+<meta http-equiv="X-Content-Security-Policy" content="default-src 'self' ws://http://127.0.0.1:8888/socket.io/; script-src 'self' ws://http://127.0.0.1:8888/socket.io/"> -->
+
+    <title>Compression Drawing</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../libraries/socket.io.min.js"></script>
+
+
+
+    <script src="../libraries/p5.min.js"></script>
+    <script src="sketch.js" type="text/javascript"></script>
+
+    <!-- <script src="../magick.js"></script> -->
+    <!-- <script src="../magickApi.js"></script> -->
+
+    <!-- <style>
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+
+        /* This centers our sketch horizontally. */
+        justify-content: space-between;
+        flex-direction: row;
+        /* margin-left: 300px;
+        margin-right: 350px; */
+        align-items: center;
+      }
+  </style> -->
+
+  </head>
+
+  <body>
+    <div id="gifSlider">
+      <label for="selectSaveDir"></label><br></br>
+      <button id="selectSaveDir" name="selectSaveDir">Select directory</button>
+      <label for="iputFolder"></label><br></br>
+      <input type="text" id="inputFolder" name="inputFolder "placeholder="Your folder name here"></input>
+      <div>Make folder to save to</div>
+      <script>
+        document.querySelector('#selectSaveDir').addEventListener('click', () => {
+          MY_APP_NAMESPACE.openDialog();
+        });
+      </script>
+    </div>
+    <div id="yourSavePath"></div>
+
+    <div id="mainContainer">
+
+    <div id="canvasArea">
+      <div id=myCanvas></div>
+      <div id="gifSlider">
+        <div id="drawOptions"></div>
+        <div id="blendSelect"></div>
+      </div>
+      <div id="lineContainter">
+        <div id="lineSize"></div>
+        <div id="lineAlpha"></div>
+      </div>
+      <div id="sprayContainer">
+        <div id="sprayRows">
+          <div id="sprayDiameter"></div>
+          <div id="sprayDensity"></div>
+        </div>
+        <div id="sprayRows">
+          <div id="dotSize"></div>
+          <div id="sprayAlpha"></div>
+        </div>
+      </div>
+      <div id="canvasButtons">
+          <div id="saveButton"></div>
+          <div id="compressButton"></div>
+          <div id="gifButton"></div>
+          <div id="gifSlider">
+            <div id="gifCompTxt"></div>
+            <!-- <div id="gifCompSld"></div> -->
+          </div>
+      </div>
+    </div>
+
+
+
+    <!-- <div id="drawOptions"></div>
+    <div id="lineContainter">
+      <div id="lineSize"></div>
+      <div id="lineAlpha"></div>
+    </div>
+    <div id="sprayContainer">
+      <div id="sprayDiameter"></div>
+      <div id="sprayDensity"></div>
+      <div id="dotSize"></div>
+      <div id="sprayAlpha"></div>
+    </div> -->
+    <div id="interface">
+      <div id="colorOp">
+        <div id="slideCont">
+          <div id="Hue">H</div>
+          <div id="Saturation">S</div>
+          <div id="Lightness">L</div>
+        </div>
+        <div id="colorBox"></div>
+      </div>
+      <div id="channel">image channel adj:
+        <div id="channels">
+          <div id="redC"></div>
+          <div id="greenC"></div>
+          <div id="blueC"></div>
+        </div>
+      </div>
+      <!-- <div id="aaa">aaa</div> -->
+      <div id="extras"></div>
+      <div id="imgOpacity"></div>
+      <div id="blendSelectImg"></div>
+      <div id="noise"></div>
+      <div id="zoom"></div>
+      <div id="quality"></div>
+      <div id="rotate"></div>
+      <div id="jitter"></div>
+      <!-- <div id="canvasButtons2">
+          <div id="dirSetInput"></div>
+          <div id="dirSetButton"></div>
+      </div> -->
+
+      <!-- <div id="canvasButtons">
+          <div id="blendSelect"></div>
+          <div id="saveButton"></div>
+          <div id="compressButton"></div>
+          <div id="gifButton"></div>
+      </div>
+
+
+
+      <div id="drawOptions"></div>
+      <div id="lineContainter">
+        <div id="lineSize"></div>
+        <div id="lineAlpha"></div>
+      </div>
+      <div id="sprayContainer">
+        <div id="sprayDiameter"></div>
+        <div id="sprayDensity"></div>
+        <div id="dotSize"></div>
+        <div id="sprayAlpha"></div>
+      </div> -->
+    </div>
+  </div>
+  <!-- <div id="mainContainer"> -->
+    <!-- <div id=myCanvas></div>
+    <div id="interface">
+      <div id="canvasButtons">
+        <div id="saveButton"></div>
+        <div id="compressButton"></div>
+      </div>
+      <div id="drawOptions"></div>
+      <div id="sprayContainer">
+        <div id="sprayDiameter"> </div>
+        <div id="sprayDensity"></div>
+        <div id="dotSize"></div>
+        <div id="sprayAlpha"></div>
+      </div>
+    </div> -->
+  <!-- </div> -->
+
+    <!-- <h1>FUCK</h1> -->
+    <!-- We are using Node.js <span id="node-version"></span>,
+    Chromium <span id="chrome-version"></span>,
+    and Electron <span id="electron-version"></span>. -->
+
+    <!-- You can also require other files to run in this process -->
+    <script src="../renderer.js"></script>
+
+
+
+
+  </body>
+</html>

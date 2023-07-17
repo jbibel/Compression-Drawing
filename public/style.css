@@ -1,0 +1,86 @@
+#mainContainer{
+  display: flex;
+  /*flex-direction: row;*/
+  justify-content:center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin:70px;
+
+}
+#myCanvas{
+  padding-bottom: 70px;
+}
+#canvasArea{
+  display:flex;
+  flex-direction: column;
+  align-content:flex-start;
+}
+#interface{
+  padding-left: 80px;
+  padding-right: 30px;
+}
+#canvasButtons{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  padding-bottom:10px;
+}
+#gifSlider{
+  display: flex;
+  flex-direction:row;
+  padding-top:10px;
+}
+#sprayRows{
+  display:flex;
+  flex-direction: row;
+}
+
+body{
+  background: gainsboro;
+  font-family:"courier";
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+#slideCont{
+  display:flex;
+  flex-direction:column;
+}
+#colorOp{
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  padding-bottom:10px;
+}
+#channel{
+  padding-top:5px;
+}
+#channels{
+  display: flex;
+  flex-direction:column;
+  padding-left: 20px;
+  padding-top:5px;
+  padding-bottom:10px;
+}
+#redC{
+  display: flex;
+  flex-direction:column;
+  align-items: left;
+}
+#greenC{
+  display: flex;
+  flex-direction:column;
+  align-items: left;
+}
+#blueC{
+  display: flex;
+  flex-direction:column;
+  align-items: left;
+}
