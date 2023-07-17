@@ -24,9 +24,6 @@
     "electronify-server": "^0.6.2",
     "express": "^4.18.2",
     "gm": "^1.25.0",
-    "imagemin": "^8.0.1",
-    "request": "^2.88.2",
-    "socket.io": "^4.7.1",
-    "socket.io-client": "^4.6.0"
+    "socket.io": "^4.7.1"
   }
 }
