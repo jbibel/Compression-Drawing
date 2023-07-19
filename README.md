@@ -44,7 +44,7 @@ Small instructions disclaimer: Since I am using a Mac, I have not tried these st
    9.6.7
    ```
 4. Next go install [GraphicsMagick](http://www.graphicsmagick.org/) for your opperating system. This is required for a node package the app uses (the one that dose all of the compressing and other stuff). On its own, GraphicsMagick is basically Photoshop but as a text adventure and free. (not nessesary, but if you think GM cool, I recomend checking out [ImageMagick](https://imagemagick.org/index.php) too!)
-1. Download/clone this repo. The whole thing. A way to do this on your browser is to go to main page of this repo, find the button that says `<> Code`. Click it and then click the `Download ZIP` option. Once downloaded, unzip it and move it to where ever you'd like it to be.
+1. Download/clone this repo. The whole thing. A way to do this on your browser is to go to the top of the main page of this repo and find the button that says `<> Code`. Click it and then click the `Download ZIP` option. Once downloaded, unzip it and move it to where ever you'd like it to be.
 3. Back in your command-line, type `cd`, space, and then the path to the unzipped repo folder (i.e. `cd /the/path/to/Compression-Drawing`). Once that is typed up in the command-line, press enter. You should now be inside of Compression-Drawing within your command-line.
 4. Now that you're in the directory, type `npm install` and press enter to download the necessary packages in the directory(this may take a minute)
 5. Finally, type `npm start` and enter to run the app
