@@ -11,12 +11,9 @@ Express and Socket.IO are used to communicate between the p5.js sketch and the n
 This is all wrapped in Electron to act as a desktop application.
 
 ## **Important Note:**
-### This project is at a point where I would like to package it into a .dmg for macOS and theoretically a .exe for Windows. **_However_** there are a number of problems that I need to solve and learn before I can do that:
+### This project is at a point where I would like to package it into a .dmg for macOS and theoretically a .exe for Windows. **_However_** there is a big problem and other smaller ones that I need to solve and learn before I can do that:
 ###  - I greatly overestimated how easy it is to built a multi platform app *(no .exe yet)*
 - A classic. When I decided to use Electron I though *"Oh yeah, I can make this for Windows. This will just work, easy peasy."* Unfortunately, no. When trying to figuring out how to make a nested directory through the app, I found out that there are some functions that are not compatible between macOS and Windows. I believe I haven't used any OS specific functions, but since I only have a Mac on hand I have no way of testing it out currently. I'll look into investing in a virtual machine to look into it further.
-
-###  - I don't really know how secure this app is *(though I believe it is fine?)*
-- First of all, this app does not and should not connect to the internet. Everything should run locally, even though it is written in javascript and tools meant for web apps and online communication (Electron, Node, Express, Socket.IO). Maybe I'm being too paranoid but I worry that some outside actor could use it as a way to get to ones file system. This has not happened to me while working on it, and from my limited knowledge everything should be fine, but it's still something I think about and I would hate it if someone was hurt by this. A way to boost security I've read is to use an HTTPS server instead of a HTTP server that is being used. The 'S' stands for secure by the way. With this kind of server, there needs to be a generated key and certificate to access the HTTPS server. Until I have a better understanding or have a second pair of eyes to look at this
 
 ###  - Other issues *(file system, memory leak, optimization in general)*
 - I'm still trying wrap my head around how to set a directory selected by the user to make a folder with a given name to save the canvas images of the project. Currently, images are saved in a folder within the project itself and if packaged like this, the app will not be able to save to the folder inside of itself thinking it doesn't exist. Unfortunately I'm not having any luck as to how to create a dynamic path for the server to access another folder outside of it's root (i.e. you make a folder on your desktop thru the app, the app knows how to navigate where it is to where that new folder is)
@@ -24,13 +21,12 @@ This is all wrapped in Electron to act as a desktop application.
 - I don't have much experience with javascript, node, and electron. I was using javascript because thats all I really know and have had some experience with. More accurately, I only really know the library p5.js hahaha. So it should go without saying that things have been written and composed in a weird, not too great way. I'm sure I could rewrite a bunch of aspects that could be simplified/abstracted so things could run smoother. A bigger issue is that javascript is not a good language for an app like this that requires to frequently save and load images semi-seamlessly. There are so many finicky I have done to get things to work as they do now that I am still kinda shocked it still holds up (for the most part).
 
 
-## Why Electron
-All I really know is a slim understanding of javascript. Specifically p5.
-This started off... I'll get back to this at another time
+## Why Electron?
+Electron is a popular name I saw a lot when searching online back when I first started, and since I was eager to make a desktop app I thought "sure, why not?". Now, 
 
 ## So... can I actually run it
 To the person reading this: yes (I think).
-Some prerequisites: Node.js and NPM. I will link a guide for this
+Some prerequisites: Node.js, NPM, and Graphicmagick. I will link a guide for these
 ### 1. Download/clone this repo
 ### 2. In Terminal or Console, use cd to change the directory to the repo folder (i.e. cd the/path/to/Compression-Drawing)
 ### 3. Now that you're in the directory, type npm install to download the necessary packages (this may take a minute)
