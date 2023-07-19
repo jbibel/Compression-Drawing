@@ -78,6 +78,7 @@
 body{
   background: gainsboro;
   font-family:"courier";
+  font-size: 14px;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
@@ -123,6 +124,21 @@ body{
   display: flex;
   flex-direction:column;
   align-items: left;
+}
+#Hue{
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+}
+#Saturation{
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+}
+#Lightness{
+  display: flex;
+  flex-direction:row;
+  align-items: center;
 }
 /* #zoom{
   padding-top:20px;

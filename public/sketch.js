@@ -99,7 +99,9 @@ function setup() {
   zoom.parent("zoom")
   zoom.style('width','200px')
 
-  quality = createSlider(1,75,50,1)
+  // 75 is GM's default so I have that set as the maximum
+  // since I want to encurage lossy-ness. Max can be set back to 100.
+  quality = createSlider(1,75,75,1)
   qualityDiv=createDiv("qulaity: "+quality.value(),true)
   qualityDiv.parent("quality")
   quality.parent("quality")
@@ -224,6 +226,7 @@ function setup() {
   Lightness.parent("Lightness")
   colorDiv = createDiv('')
   colorDiv.parent("colorBox")
+
 
   //draw stuff
   drawOptions = createRadio();
@@ -359,7 +362,7 @@ function draw() {
   l = Lightness.value()
   // a = 1
   clr = color(h, s, l, a)
-  sprayClr = color(h, s, l, random(a/10,a))
+  sprayClr = color(h, s, l, random(.01,a))
     // pickClr = color()
     // mainClr=
   colorDiv.style("width:60px;height:50px;background-color:hsl(" + h + "," + s + "%," + l + "%);margin:5px;padding-bottom:10px")

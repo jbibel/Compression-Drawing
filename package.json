@@ -1,5 +1,5 @@
 {
-  "name": "my-p5js-app",
+  "name": "Compression-Drawing",
   "version": "1.0.0",
   "description": "trying to make this thing after i messed up a 7 year old template i found on github",
   "main": "main.js",
@@ -8,7 +8,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
-  "author": "meFungus",
+  "author": "Fungus",
   "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^6.2.1",

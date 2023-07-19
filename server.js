@@ -87,7 +87,7 @@ function newConnection(socket) {
         gm(cnvDir + "/MyCanvas" + (String(cData.sendNumber - 1).padStart(5, "0")) + ".jpg")
         .monitor()
           .modulate(100, 100 + cData.saturationNum)
-          .sharpen(0, 0.01 * cData.sharpNum)
+          .sharpen(0,0.01 * cData.sharpNum)
 
           // .noise('impulse')
           .operator("All","Noise-Random",cData.noiseNum+"%")
