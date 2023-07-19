@@ -229,12 +229,19 @@ function setup() {
 
 
   //draw stuff
-  drawOptions = createRadio();
+  drawOptions = createRadio("drwOpt");
   var temp = drawOptions.option('1',"line");   //line
   drawOptions.option('2', "spray");             //spray
   drawOptions.option('3', "color picker");             //color picker
   drawOptions.parent("drawOptions")
   temp.checked = true
+
+  imageFit = createRadio("imgFit");
+  var fitTemp = imageFit.option('1',"contain");
+  imageFit.option('2',"cover");
+  imageFit.parent("dropFit");
+  fitTemp.checked = true
+
 
   //Line
   lineOptions = document.getElementById("lineContainter")
@@ -306,10 +313,26 @@ function selectBlendModeImg() {
 }
 
 function gotFile(file) {
-  blendMode(BLEND)
+  blendMode(blendSelImg.value())
+  imageMode(CENTER)
   img = createImg(file.data).hide();
-  image(img, width / 2, height / 2)
-  selectBlendMode()
+  var setFitting = CONTAIN
+  var fitVal = imageFit.value()
+  console.log(fitVal)
+  if (fitVal === '1'){
+    setFitting = CONTAIN
+    console.log(setFitting)
+  } else{
+    setFitting = COVER
+    console.log(setFitting)
+  }
+  // if (fitVal == '1'){
+  //   imageFit = CONTAIN
+  // } else {
+  //   imageFit = COVER
+  // }
+  image(img, width/2, height/2, width, height, 0, 0, img.width, img.height, setFitting)
+  // selectBlendMode()
   // item = blendSel.value();
 }
 
