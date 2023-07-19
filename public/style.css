@@ -24,12 +24,12 @@
 /*}*/
 #mainContainer{
   display: flex;
-  /*flex-direction: row;*/
-  justify-content:center;
-  position: fixed;
+  flex-direction: row;
+  /* justify-content:center; */
+  /* position: fixed; */
   top: 0;
-  left: 0;
-  right: 0;
+  /* left: 0;
+  right: 0; */
   /* align-content:flex-start;
   align-items:flex-start; */
   margin:70px;
