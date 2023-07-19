@@ -16,8 +16,8 @@ const path = require('path')
 const url = require('url')
 
 const fs = require('fs')
-var mainDir = app.getPath('desktop')
-var mainDirName = 'testing'
+// var mainDir = app.getPath('desktop')
+// var mainDirName = 'testing'
 
 // console.log(path.join(mainDir,mainDirName))
 
@@ -67,6 +67,7 @@ const createWindow = () => {
 
   // Load the index.html of the app
   mainWindow.loadURL(url.format({
+    // pathname: path.join(__dirname, 'public', 'index.html'),
     pathname: path.join(__dirname, 'public', 'index.html'),
     protocol: 'file:',
     slashes: true
@@ -90,12 +91,14 @@ const createWindow = () => {
     }).catch(err => {
       console.log(err)
     })
+    trying = 0
   });
 
 
 
   mainWindow.webContents.session.on("will-download", function(event, item, webContents) {
     item.setSavePath(__dirname+`/public/images/canvas/${item.getFilename()}`);
+    // item.setSavePath(mainDir+`/testing/images/canvas/${item.getFilename()}`);
 });
 
 

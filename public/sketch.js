@@ -99,7 +99,7 @@ function setup() {
   zoom.parent("zoom")
   zoom.style('width','200px')
 
-  quality = createSlider(1,100,15,1)
+  quality = createSlider(1,75,50,1)
   qualityDiv=createDiv("qulaity: "+quality.value(),true)
   qualityDiv.parent("quality")
   quality.parent("quality")
@@ -129,7 +129,7 @@ function setup() {
   blueChan.parent("blueC")
   blueChan.style('width','175px')
 
-  sharpnessSlider = createSlider(1,100,0,1)
+  sharpnessSlider = createSlider(1,100,1,1)
   sharpnessDiv=createDiv("sharpness: "+sharpnessSlider.value(),true)
   sharpnessDiv.parent("extras")
   sharpnessSlider.parent("extras")
@@ -141,7 +141,7 @@ function setup() {
   rotateImg.parent("rotate")
   rotateImg.style('width','200px')
 
-  jitterImg=createSlider(0, 30, 0, 0.25);
+  jitterImg=createSlider(0, 30, 0, 0.5);
   jitterDiv=createDiv("jitter: "+ jitterImg.value(),true);
   jitterDiv.parent("jitter");
   jitterImg.parent("jitter");
@@ -213,9 +213,9 @@ function setup() {
   saveButton.style("font-family:courier;margin:5px")
 
   //color stuff
-  Hue = createSlider(0, 360, 0, 15)
-  Saturation = createSlider(0, 100, 50, 5)
-  Lightness = createSlider(0, 100, 0, 5)
+  Hue = createSlider(0, 360, 0, 1)
+  Saturation = createSlider(0, 100, 50, 1)
+  Lightness = createSlider(0, 100, 0, 1)
   Hue.id("test")
   Saturation.id("test1")
   Lightness.id("test2")
@@ -269,7 +269,7 @@ function setup() {
   sprayDensity.parent('sprayDensity')
   sprayDensity.style('width','200px')
 
-  sprayDotSize = createSlider(0.25, 10, 1, 0.25)
+  sprayDotSize = createSlider(0.5, 10, 1, 0.5)
   dotSizeDiv = createDiv('dot size: ' + sprayDotSize.value(), true)
   dotSizeDiv.parent('dotSize')
   sprayDotSize.parent('dotSize')
@@ -547,7 +547,7 @@ function returnServedImage() {
   stringNumber = String(imgNumber).padStart(5,'0')
   on = false
   // currentImg = loadImage("MyCurrentCanvas.jpg")
-  // image(currentImg, 0, 0)
+  // image(currentImg, 0, 0, width, height)
   setTimeout(function() {
     // loadImage("images/canvas/MyCanvas"+stringNumber+".jpg", function(img) {
     loadImage("images/canvas/currentCanvas.jpg", function(img) {
@@ -556,7 +556,7 @@ function returnServedImage() {
       selectBlendModeImg()
       tint(100,imgOpacity.value());
       translate(width/2+random(jitterImg.value()*-1,jitterImg.value()), height/2+random(jitterImg.value()*-1,jitterImg.value()))
-      // image(img, 0, 0, width + zoom.value(), height + zoom.value());
+      image(img, 0, 0, width, height);
       rotate(rotateImg.value())
 
       image(img, 0, 0, width + zoom.value() + random(jitterImg.value()*-1,jitterImg.value()), height + zoom.value() + random(jitterImg.value()*-1,jitterImg.value()));
