@@ -30,6 +30,12 @@ I guess the biggest reason why I stuck with JavaScript and Electron was its hypo
 
 # So... can I actually run it
 To the person reading this: yes! (I think)
+If you are familliar with Node, NPM, and using a command-line interface, this will be very straight forward. Prerequisites are Node.JS, NPM, and GraphicsMagick
+
+If not, I recommend watching [this playlist](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6b36TzJidYfIYwTFEq3K5qH) by The Coding Train that I watched when first starting this project. This will hopefully give you a good explanation of Node, NPM, and command-line usage.
+
+*_Remember: use your command-line carefully and responsibly!_*
+
 There's a few steps that need to be followed before that can happen though. Make sure you are connected to the internet for this as you'll be downloading a few things. You will also need to use a command-line interface for a lot of these steps. I do appologize for this current requirement as it is not the most user-friendly way if you are brand new to this, but I'll try to be as detaild as possible.
 Small instructions disclaimer: Since I am using a Mac, I have not tried these steps on Windows.
 1. [Download and install Node.js]([https://nodejs.org/en](https://nodejs.org/en/download)) for your operating system is. Make sure you download the LTS version (at the time of writing it is 18.17.0) as that will be the most reliable. This will also install NPM version 9.6.7.
