@@ -1,7 +1,7 @@
 # Compression Drawing
 ![Screenshot of my drawing tool Campression Drawing. A highly distorted crop of the painting "Ophelia" by John Everett Millais (A painting of a woman in a dress floating on her back down a stream. The face of the woman in the original has a heavly look of sadness and emptyness). This altered version in the app has her face painted over with a smiley face](/readme-files/screenshots/hello.png)
 
-### **Important Note:**
+### **Important Notes:**
 <details><summary>
 This project is at a point where I would like to package it into a .dmg for macOS and theoretically a .exe for Windows. However there is a big problem and other smaller ones that I need to solve and better understand before I can do that. Click for more thoughts.
 </summary>
@@ -14,6 +14,8 @@ This project is at a point where I would like to package it into a .dmg for macO
 - A few days ago I got a warning that there was a memory leak caused by the app. I figure the culprit is within the node server and the functions that are called within. How things are structured, the function that creates the compressed image can get overwhelmed if it gets too many requests to do its job. I try not to go too fast with this app, but sometimes I have and it either loads an image from a previous session or gives an error saying the image does not exist. Just wait for the compressed image to show up on the canvas before hitting compress again.
 - I don't have much experience with javascript, node, and electron. I was using javascript because thats all I really know and have had some experience with. More accurately, I only really know the library p5.js hahaha. So it should go without saying that things have been written and composed in a weird, not too great way. I'm sure I could rewrite a bunch of aspects that could be simplified/abstracted so things could run smoother. A bigger issue is that javascript is not a good language for an app like this that requires to frequently save and load images semi-seamlessly. There are so many finicky I have done to get things to work as they do now that I am still kinda shocked it still holds up (for the most part).
 </details>
+
+This read me is still being worked on. I will continue to update it until I think it is finished. Things to be added soon; Basics on how to use, description of features and tools, and other notes and thanks.
 
 ## What is this exactly?
 Compression Drawing is a drawing tool that explores JPEG compression artifacts and recursive image processing.
@@ -55,3 +57,10 @@ Small instructions disclaimer: Since I am using a Mac, I have not tried these st
 4. Now that you're in the directory, type `npm install` and press enter to download the necessary packages in the directory(this may take a minute)
 5. Finally, type `npm start` and enter to run the app
 and with that, fingers and toes crossed, it should be running on your computer!
+
+## How do I work this thing?
+*this section is a work in progress*
+First of all, when you click the "compress" button in the lower left area that will compress the current canvas. You can also press the tilde key (`~`) to also compress. The sliders and options on the right will effect how the image is processed. A key slider, the one labled "quality", determines the overall compression. Higher means less compression and lower mean more.
+If you've used MS Paint then you'll feel slightly at home! There are three drawing tools to use; line, spray, and color picker. The line draws a line on the canvas. You can aadjust the size and alpha/transparancy. The spray tool acts like a spray can. You can adjust the diameter of the spray, the dot size of the spray, the density of the dots, and the alpha/transpancy of the spray. Finally, the color picker will get the color value of whatever you click on inside of the canvas and will be used as the color for drawing tools.
+To view your image files, enter the app directory and head into the `public` folder and then into the `images` folder. Inside are two folders: `canvas` and `gif`. Your still images will be inside of the `canvas`. 
+**IMPORTANT:** remember to move your images to a new and safe location after you exit the app. If you don't and start it up again the new drawing will save over the old ones.
