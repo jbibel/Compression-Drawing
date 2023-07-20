@@ -26,19 +26,19 @@ Express and Socket.IO are used to communicate between the p5.js sketch and the n
 This is all wrapped in Electron to act as a desktop application.
 
 ## Why JavaScript/P5/Electron?
-I just feel comfortable using P5 and I'm too stuborn to seek out a better language for raster graphic creation and manipulation. Learning P5 was my first real step into learning how to code anything. While I do want to revisit this idea in a more sutable language, I really wanted to push myself to follow through with a big (big in my perspective, bigger than anything I've done so far) project like this.
+I just feel comfortable using P5 and I'm too stubborn to seek out a better language for raster graphic creation and manipulation. Learning P5 was my first real step into learning how to code anything. While I do want to revisit this idea in a more suitable language, I really wanted to push myself to follow through with a big (big in my perspective, bigger than anything I've done so far) project like this.
 Electron is a popular name I saw a lot when searching online back when I first started, and since I was eager to make a desktop app I thought "sure, why not?".
 I guess the biggest reason why I stuck with JavaScript and Electron was its hypothetical reach. It doesn't matter if you are on a Mac or PC, if you have a web browser you can run a P5 sketch. And since Electron is Google Chrome (Chromium) running the JavaScript and displaying the HTML, it can be easily released for Mac and PC (but it's very easy to say that, in practice it can be and most likely will be harder).
 
 # So... can I actually run it
 To the person reading this: yes! (I think)
-If you are familliar with Node, NPM, and using a command-line interface, this will be very straight forward. Prerequisites are Node.JS, NPM, and GraphicsMagick
+If you are familiar with Node, NPM, and using a command-line interface, this will be very straight forward. Prerequisites are Node.JS, NPM, and GraphicsMagick
 
 If not, I recommend watching [this playlist](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6b36TzJidYfIYwTFEq3K5qH) by The Coding Train that I watched when first starting this project. This will hopefully give you a good explanation of Node, NPM, and command-line usage.
 
 *_Remember: use your command-line carefully and responsibly!_*
 
-There's a few steps that need to be followed before that can happen though. Make sure you are connected to the internet for this as you'll be downloading a few things. You will also need to use a command-line interface for a lot of these steps. I do appologize for this current requirement as it is not the most user-friendly way if you are brand new to this, but I'll try to be as detaild as possible.
+There's a few steps that need to be followed before that can happen though. Make sure you are connected to the internet for this as you'll be downloading a few things. You will also need to use a command-line interface for a lot of these steps. I do apologize for this current requirement as it is not the most user-friendly way if you are brand new to this, but I'll try to be as detailed as possible.
 Small instructions disclaimer: Since I am using a Mac, I have not tried these steps on Windows.
 1. [Download and install Node.js]([https://nodejs.org/en](https://nodejs.org/en/download)) for your operating system is. Make sure you download the LTS version (at the time of writing it is 18.17.0) as that will be the most reliable. This will also install NPM version 9.6.7.
 2. Test to see if they were successfully installed by going to your computers command-line interface. On Mac use Terminal, on Windows use either CMD or Powershell. Once it's open, copy and paste this:
@@ -51,7 +51,7 @@ Small instructions disclaimer: Since I am using a Mac, I have not tried these st
    v18.17.0
    9.6.7
    ```
-4. Next go install [GraphicsMagick](http://www.graphicsmagick.org/) for your opperating system. This is required for a node package the app uses (the one that dose all of the compressing and other stuff). On its own, GraphicsMagick is basically Photoshop but as a text adventure and free. (not nessesary, but if you think GM cool, I recomend checking out [ImageMagick](https://imagemagick.org/index.php) too!)
+4. Next go install [GraphicsMagick](http://www.graphicsmagick.org/) for your operating system. This is required for a node package the app uses (the one that dose all of the compressing and other stuff). On its own, GraphicsMagick is basically Photoshop but as a text adventure and free. (not necessary, but if you think GM cool, I recommend checking out [ImageMagick](https://imagemagick.org/index.php) too!)
 1. Download/clone this repo. The whole thing. A way to do this on your browser is to go to the top of the main page of this repo and find the button that says `<> Code`. Click it and then click the `Download ZIP` option. Once downloaded, unzip it and move it to where ever you'd like it to be.
 3. Back in your command-line, type `cd`, space, and then the path to the unzipped repo folder (i.e. `cd /the/path/to/Compression-Drawing`). Once that is typed up in the command-line, press enter. You should now be inside of Compression-Drawing within your command-line.
 4. Now that you're in the directory, type `npm install` and press enter to download the necessary packages in the directory(this may take a minute)
@@ -62,12 +62,12 @@ and with that, fingers and toes crossed, it should be running on your computer!
 *this section is a work in progress*  
 - First of all, when you click the "compress" button in the lower left area that will compress the current canvas.  
 - You can also press the tilde key (`~`) to also compress.  
-- The sliders and options on the right will effect how the image is processed. A key slider, the one labled "quality", determines the overall compression. Higher means less compression and lower mean more.
+- The sliders and options on the right will effect how the image is processed. A key slider, the one labeled "quality", determines the overall compression. Higher means less compression and lower mean more.
 
 If you've used MS Paint then you'll feel slightly at home!  
 - There are three drawing tools to use; line, spray, and color picker.  
-- The line draws a line on the canvas. You can aadjust the size and alpha/transparancy.  
-- The spray tool acts like a spray can. You can adjust the diameter of the spray, the dot size of the spray, the density of the dots, and the alpha/transpancy of the spray.  
+- The line draws a line on the canvas. You can adjust the size and alpha/transparency.  
+- The spray tool acts like a spray can. You can adjust the diameter of the spray, the dot size of the spray, the density of the dots, and the alpha/transparency of the spray.  
 - Finally, the color picker will get the color value of whatever you click on inside of the canvas and will be used as the color for drawing tools.
 
 To view your image files, enter the app directory and head into the `public` folder and then into the `images` folder.  
