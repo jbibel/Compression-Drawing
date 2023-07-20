@@ -59,8 +59,17 @@ Small instructions disclaimer: Since I am using a Mac, I have not tried these st
 and with that, fingers and toes crossed, it should be running on your computer!
 
 ## How do I work this thing?
-*this section is a work in progress*
-First of all, when you click the "compress" button in the lower left area that will compress the current canvas. You can also press the tilde key (`~`) to also compress. The sliders and options on the right will effect how the image is processed. A key slider, the one labled "quality", determines the overall compression. Higher means less compression and lower mean more.
-If you've used MS Paint then you'll feel slightly at home! There are three drawing tools to use; line, spray, and color picker. The line draws a line on the canvas. You can aadjust the size and alpha/transparancy. The spray tool acts like a spray can. You can adjust the diameter of the spray, the dot size of the spray, the density of the dots, and the alpha/transpancy of the spray. Finally, the color picker will get the color value of whatever you click on inside of the canvas and will be used as the color for drawing tools.
-To view your image files, enter the app directory and head into the `public` folder and then into the `images` folder. Inside are two folders: `canvas` and `gif`. Your still images will be inside of the `canvas`. 
-**IMPORTANT:** remember to move your images to a new and safe location after you exit the app. If you don't and start it up again the new drawing will save over the old ones.
+*this section is a work in progress*  
+- First of all, when you click the "compress" button in the lower left area that will compress the current canvas.  
+- You can also press the tilde key (`~`) to also compress.  
+- The sliders and options on the right will effect how the image is processed. A key slider, the one labled "quality", determines the overall compression. Higher means less compression and lower mean more.
+
+If you've used MS Paint then you'll feel slightly at home!  
+- There are three drawing tools to use; line, spray, and color picker.  
+- The line draws a line on the canvas. You can aadjust the size and alpha/transparancy.  
+- The spray tool acts like a spray can. You can adjust the diameter of the spray, the dot size of the spray, the density of the dots, and the alpha/transpancy of the spray.  
+- Finally, the color picker will get the color value of whatever you click on inside of the canvas and will be used as the color for drawing tools.
+
+To view your image files, enter the app directory and head into the `public` folder and then into the `images` folder.  
+- Inside are two folders: `canvas` and `gif`. Your still images will be inside of the `canvas`.  
+- **IMPORTANT:** remember to move your images to a new and safe location after you exit the app. If you don't and start it up again the new drawing will save over the old ones.
