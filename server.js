@@ -38,7 +38,7 @@ var io = socket(server);
 
 app.use(express.static('public'));
 
-console.log("we did it, for now")
+// console.log("we did it, for now")
 
 io.sockets.on('connection', newConnection);
 
@@ -77,15 +77,16 @@ function newConnection(socket) {
 
   // new Promise(function(resolve, reject))
   function triggerMsg(cData) {
-    console.log("got it")
+    // console.log("got it")
     if (cData.trig === true) {
       // console.log('trigger is on')
       // String(cData.sendNumber).padStart(5,"0")
       setTimeout(function() {
 
 
-        gm(cnvDir + "/MyCanvas" + (String(cData.sendNumber - 1).padStart(5, "0")) + ".jpg")
+        gm(cnvDir + cData.saveName + (String(cData.sendNumber - 1).padStart(5, "0")) + ".jpg")
         .monitor()
+          .scale(cData.canvasWidth*cData.scaleFctr)
           .modulate(100, 100 + cData.saturationNum)
           .sharpen(0,0.01 * cData.sharpNum)
 
@@ -97,6 +98,7 @@ function newConnection(socket) {
           //.channel("Blue")
           // .noise(0.2)
           .compress("JPEG")
+          // .samplingFactor(2,1)
           .quality(cData.qualityNum)
           // .write(cnvDir + "/MyCanvas" + (String(cData.sendNumber).padStart(5, "0")) + ".jpg", function(err) {
           .write(cnvDir + "/currentCanvas.jpg", function(err) {
@@ -112,19 +114,19 @@ function newConnection(socket) {
   var timer
 
   function makeGif(cData2) {
-    console.log(cData2.trig2)
+    // console.log(cData2.trig2)
     if (cData2.trig2 === true) {
       // console.log("doing it")
       new Promise(function(resolve, reject) {
         setTimeout(() => resolve(1), 500);
       }).then(function(result) {
-        gm(cnvDir + "/MyCanvas*.jpg")
-        .scale(500)
+        gm(cnvDir + cData2.saveName + ".jpg")
+        .scale(360)
+        .colors(256)
         .dither(true)
-        .colors(254)
         .delay(1)
         .loop(1)
-          .write(gifDir + "/CanvasGif_test.gif", function(err) {
+          .write(gifDir + cData2.saveNameOut + ".gif", function(err) {
             if (err) throw err;
           })
       });

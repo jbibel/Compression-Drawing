@@ -42,8 +42,12 @@ const createWindow = () => {
   // fs.mkdir(path.join(app.getAppPath(),"1NEW1"))
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: width,
-    height: height,
+    width: 1280,
+    height: 750,
+    maxWidth: width,
+    maxHeight: height,
+    minWidth: 1280,
+    minHeight: 750,
     useContentSize: true ,   // when false, width/height will set the size of the whole app, including frames. If true, innerWindow will be set instead, resulting in a bigger app window
     fullscreenable: false,
     title: "Compression Drawing BETA",

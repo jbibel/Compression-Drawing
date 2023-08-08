@@ -1,81 +1,9 @@
-/*.sprayContainer{
-  display: flex;
-  flex-direction: column;
-
-
-}
-.mainContainer{
-  display: flex;
-  flex-direction: row;
-  background: red;
-}
-
-.interface{
-  margin: 100px;
-}
-.canvasButtons{
-  display: flex;
-  flex-direction: row;
-}*/
-/*#sprayContainer{*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-
-/*}*/
-#mainContainer{
-  display: flex;
-  flex-direction: row;
-  /* justify-content:center; */
-  /* position: fixed; */
-  top: 0;
-  /* left: 0;
-  right: 0; */
-  /* align-content:flex-start;
-  align-items:flex-start; */
-  margin:70px;
-
-}
-#myCanvas{
-  padding-bottom: 70px;
-}
-/*#myCanvas{*/
-/*  border-style:solid;*/
-/*  border-width:1px;*/
-/*}*/
-#canvasArea{
-  display:flex;
-  flex-direction: column;
-  align-content:flex-start;
-}
-#interface{
-  padding-left: 80px;
-  padding-right: 30px;
-  /* margin: 50px; */
-}
-#canvasButtons{
-  display: flex;
-  flex-direction: row;
-  align-items:center;
-  padding-bottom:10px;
-}
-#gifSlider{
-  display: flex;
-  flex-direction:row;
-  padding-top:10px;
-}
-#sprayRows{
-  display:flex;
-  flex-direction: row;
-}
-
-/* #canvasButtons2{
-  display: flex;
-  flex-direction: row;
-  align-items:center;
-  padding-bottom:15px;
-} */
-
 body{
+  display: flex;
+  min-height: 90vh;
+  justify-content: space-evenly;
+  align-content: space-around;
+  align-items: center;
   background: gainsboro;
   font-family:"courier";
   font-size: 14px;
@@ -87,18 +15,70 @@ body{
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
-
+#setFileName{
+  display: flex;
+  flex-direction: column;
+  width:150px
+}
+#mainContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  min-width: 100vw;
+  margin: 30px;
+}
+#myCanvas{
+  /* margin:70px; */
+  display:flex;
+  align-self: center;
+  /* padding-top: 70px; */
+  padding-bottom: 75px;
+}
+#canvasArea{
+  display:flex;
+  flex-direction: column;
+}
+#saveCont{
+  display:flex;
+  flex-direction:column;
+  margin-left: 30px;
+  padding-right:50px;
+}
+#interface{
+  margin-left: 75px;
+  margin-right: 30px;
+}
+#canvasButtons{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+}
+#gifSlider{
+  display: flex;
+  flex-direction:row;
+}
+#sprayRows{
+  display:flex;
+  flex-direction: row;
+}
+#lineContainter{
+  display:flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+#sprayContainer{
+  display:flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
 #slideCont{
   display:flex;
   flex-direction:column;
-  /*width:800px;*/
 }
 #colorOp{
   display:flex;
   flex-direction:row;
-  /*background-color:red;*/
-  align-items: center;
-  padding-bottom:10px;
+  padding-left:499px;
 }
 #channel{
   padding-top:5px;
@@ -108,7 +88,7 @@ body{
   flex-direction:column;
   padding-left: 20px;
   padding-top:5px;
-  padding-bottom:10px;
+  padding-bottom:20px;
 }
 #redC{
   display: flex;
@@ -140,11 +120,39 @@ body{
   flex-direction:row;
   align-items: center;
 }
-/* #zoom{
-  padding-top:20px;
-  padding-bottom:10px;
+#verticalCont{
+  display:flex;
+  flex-direction: column;
+  width:440px;
+  height:115px;
+  position: absolute;
+  /* padding-right: 60px; */
+  border-style: none solid none none;
+  border-color: #afabaf;
 }
-#quality{
-  padding-top:5px;
-  padding-bottom:10px;
+#verticalContClr{
+  display:flex;
+  flex-direction: column;
+}
+#drawBlend{
+  margin-left:20px;
+  margin-top:4px;
+}
+#palette{
+  display: flex;
+  flex-direction: row;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+#palette2{
+  display: flex;
+  flex-direction: row;
+  margin-left: 5px;
+}
+#compressButton{
+  border-style: solid none none none;
+  border-color: #afabaf;
+}
+/* #zoom{
+
 } */

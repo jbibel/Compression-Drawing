@@ -20,33 +20,8 @@
     <title>Compression Drawing</title>
     <link rel="stylesheet" href="style.css">
     <script src="../libraries/socket.io.min.js"></script>
-
-
-
     <script src="../libraries/p5.min.js"></script>
     <script src="sketch.js" type="text/javascript"></script>
-
-    <!-- <script src="../magick.js"></script> -->
-    <!-- <script src="../magickApi.js"></script> -->
-
-    <!-- <style>
-      html, body {
-        height: 100%;
-      }
-
-      body {
-        margin: 0;
-        display: flex;
-
-        /* This centers our sketch horizontally. */
-        justify-content: space-between;
-        flex-direction: row;
-        /* margin-left: 300px;
-        margin-right: 350px; */
-        align-items: center;
-      }
-  </style> -->
-
   </head>
 
   <body>
@@ -64,133 +39,102 @@
       </script>
     </div>
     <div id="yourSavePath"></div> -->
-
     <div id="mainContainer">
+      <div id="saveCont">
+        <div id="setFileName"></div>
+        <div id="resetBut"></div>
+        <div id="enableSaveChk"></div>
+        <div id="compressButton"></div>
+        <div id="saveButton"></div>
+        <div id="gifButton"></div>
+      </div>
 
     <div id="canvasArea">
       <div id=myCanvas></div>
       <div id="gifSlider">
-        <div id="drawOptions"></div>
-        <div id="blendSelect"></div>
-      </div>
-      <div id="lineContainter">
-        <div id="lineSize"></div>
-        <div id="lineAlpha"></div>
-      </div>
-      <div id="sprayContainer">
-        <div id="sprayRows">
-          <div id="sprayDiameter"></div>
-          <div id="sprayDensity"></div>
+        <div id="verticalCont">
+          <div id="gifSlider">
+            <div id="drawOptions"></div>
+            <div id="verticalContClr">
+              <div id="drawBlend">draw blend:</div>
+              <div id="blendSelect"></div>
+            </div>
+          </div>
+        <div id="lineContainter">
+          <div id="lineSize"></div>
+          <div id="lineAlpha"></div>
         </div>
-        <div id="sprayRows">
-          <div id="dotSize"></div>
-          <div id="sprayAlpha"></div>
+        <div id="sprayContainer">
+          <div id="sprayRows">
+            <div id="sprayDiameter"></div>
+            <div id="sprayDensity"></div>
+          </div>
+          <div id="sprayRows">
+            <div id="dotSize"></div>
+            <div id="sprayAlpha"></div>
+          </div>
         </div>
-      </div>
-      <div id="canvasButtons">
+        <!-- <div id="canvasButtons">
           <div id="saveButton"></div>
           <div id="compressButton"></div>
           <div id="gifButton"></div>
-          <div id="gifSlider">
-            <div id="gifCompTxt"></div>
-            <!-- <div id="gifCompSld"></div> -->
-          </div>
+        </div> -->
       </div>
-    </div>
-
-
-
-    <!-- <div id="drawOptions"></div>
-    <div id="lineContainter">
-      <div id="lineSize"></div>
-      <div id="lineAlpha"></div>
-    </div>
-    <div id="sprayContainer">
-      <div id="sprayDiameter"></div>
-      <div id="sprayDensity"></div>
-      <div id="dotSize"></div>
-      <div id="sprayAlpha"></div>
-    </div> -->
-    <div id="interface">
       <div id="colorOp">
         <div id="slideCont">
           <div id="Hue">hue</div>
           <div id="Saturation">sat</div>
           <div id="Lightness">lht</div>
         </div>
-        <div id="colorBox"></div>
-      </div>
-      <div id="channel">image channel adj:
-        <div id="channels">
-          <div id="redC"></div>
-          <div id="greenC"></div>
-          <div id="blueC"></div>
+        <div id="verticalContClr">
+          <div id="colorBox"></div>
+          <div id="palette">
+            <div id="colorPalBlk"></div>
+            <div id="colorPalGry"></div>
+            <div id="colorPalWht"></div>
+            <div id="colorPalRed"></div>
+            <div id="colorPalGrn"></div>
+            <div id="colorPalBlu"></div>
+          </div>
+          <div id="palette2">
+            <div id="colorPalCyn"></div>
+            <div id="colorPalMgt"></div>
+            <div id="colorPalYlw"></div>
+            <div id="colorPalOrg"></div>
+            <div id="colorPalLim"></div>
+            <div id="colorPalPrp"></div>
+          </div>
         </div>
       </div>
-      <!-- <div id="aaa">aaa</div> -->
-      <div id="extras"></div>
-      <div id="imgOpacity"></div>
-      <div id="noise"></div>
-      <div id="zoom"></div>
-      <div id="quality"></div>
-      <div id="rotate"></div>
-      <div id="jitter"></div>
-      <div id="blendSelectImg"></div>
-      <div id="dropFit">drag & drop fitting: </div>
-      <!-- <div id="canvasButtons2">
-          <div id="dirSetInput"></div>
-          <div id="dirSetButton"></div>
-      </div> -->
-
-      <!-- <div id="canvasButtons">
-          <div id="blendSelect"></div>
-          <div id="saveButton"></div>
-          <div id="compressButton"></div>
-          <div id="gifButton"></div>
-      </div>
-
-
-
-      <div id="drawOptions"></div>
-      <div id="lineContainter">
-        <div id="lineSize"></div>
-        <div id="lineAlpha"></div>
-      </div>
-      <div id="sprayContainer">
-        <div id="sprayDiameter"></div>
-        <div id="sprayDensity"></div>
-        <div id="dotSize"></div>
-        <div id="sprayAlpha"></div>
-      </div> -->
     </div>
   </div>
-  <!-- <div id="mainContainer"> -->
-    <!-- <div id=myCanvas></div>
-    <div id="interface">
-      <div id="canvasButtons">
-        <div id="saveButton"></div>
-        <div id="compressButton"></div>
-      </div>
-      <div id="drawOptions"></div>
-      <div id="sprayContainer">
-        <div id="sprayDiameter"> </div>
-        <div id="sprayDensity"></div>
-        <div id="dotSize"></div>
-        <div id="sprayAlpha"></div>
-      </div>
-    </div> -->
-  <!-- </div> -->
 
-    <!-- <h1>FUCK</h1> -->
+  <div id="interface">
+    <div>img blend:</div>
+    <div id="blendSelectImg"></div>
+    <div id="quality"></div>
+    <div id="imgOpacity"></div>
+    <div id="sampleSize"></div>
+    <div id="dropFit">drag & drop fitting: </div>
+    <div id="noise"></div>
+    <div id="extras"></div>
+    <div id="channel">image channel adj:
+      <div id="channels">
+        <div id="redC"></div>
+        <div id="greenC"></div>
+        <div id="blueC"></div>
+      </div>
+    </div>
+    <div id="zoom"></div>
+    <div id="rotate"></div>
+    <div id="jitter"></div>
+  </div>
+</div>
     <!-- We are using Node.js <span id="node-version"></span>,
     Chromium <span id="chrome-version"></span>,
     and Electron <span id="electron-version"></span>. -->
 
     <!-- You can also require other files to run in this process -->
     <script src="../renderer.js"></script>
-
-
-
-
   </body>
 </html>

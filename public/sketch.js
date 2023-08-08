@@ -9,12 +9,10 @@ var spreadY = 10
 var paths = []
 var painting = false
 var next = 0
+var saveEditing = false
 
 var blendSel
 
-// var cnv
-
-//color var's
 var Hue, Saturation, Lightness
 var colorDiv
 var clr, sprayClr, pickClr, mainClr
@@ -25,9 +23,13 @@ var gifButton;
 var dirFolderName
 var dirSet
 
+var imgNumber = 0
+var stringNumber
+var standAloneSaveNum = 0
+
 // I think this function is used for the numbering of the files to fill it up with 0's?
 function setup() {
-
+  //process to make padded number for filename
   if (!String.prototype.padStart) {
     String.prototype.padStart = function padStart(targetLength, padString) {
       targetLength = targetLength >> 0; //floor if number or convert non-number to 0;
@@ -45,12 +47,9 @@ function setup() {
     };
   }
 
-
-
-
-  pixelDensity(1)
-  var cRatio = 960
-  var cnv = createCanvas(cRatio, floor(cRatio*0.56))
+  pixelDensity(2)
+  var cRatio = 720
+  var cnv = createCanvas(cRatio, floor(cRatio*0.67))
   // var cnv = createCanvas(512, 512)
   cnv.parent("myCanvas");
   cnv.drop(gotFile)
@@ -66,42 +65,52 @@ function setup() {
   colorMode(HSL)
   angleMode(DEGREES)
 
+  compressButton = createButton("compress");
+  compressButton.mousePressed(compress);
+  compressButton.mouseReleased(returnServedImage)
+  compressButton.parent("compressButton")
+  compressButton.style("font-family:courier;margin-top:25px;")
+
+  saveButton = createButton("save")
+  saveButton.mousePressed(justSaveCanvas);
+  saveButton.parent("saveButton")
+  saveButton.style("font-family:courier;margin-top:15px;")
+
   gifButton=createButton("make_gif");
   gifButton.mousePressed(makeGif);
   gifButton.mouseReleased(finishGif)
   gifButton.parent("gifButton")
-  gifButton.style("font-family:courier;margin:5px")
+  gifButton.style("font-family:courier;margin-top:15px;")
 
-  // dirSet=createButton("make/set")
-  // dirSet.mousePressed(sendDir)
-  // dirSet.parent("dirSetButton")
-  // dirSet.style("font-family:courier;")
-  //
-  // dirFolderName=createInput("not_working");
-  // dirFolderName.parent("dirSetInput")
-  // dirFolderName.style("font-family:courier;")
-  //
-  // var setPuplicDir
-  // setPuplicDir = "/"+dirFolderName.value()
+  saveFileName=createInput("thisCanvas");
+  saveFileName.parent("setFileName")
+  saveFileName.attribute('disabled', '');
+  saveFileName.style("font-family:courier;")
 
-  // function sendDir(){
-  //   // dirFolderName.value("dumb")
-  //
-  //   var data3 = {
-  //     sentDirName:"bug";
-  //   }
-  //   socket.emit('dumb',data3)
-  // }
+  resetButDiv = createDiv("img count: "+imgNumber);
+  resetButDiv.parent("resetBut")
+  resetButDiv.style("margin-top:15px;")
+  resetBut = createButton("reset img counter");
+  resetBut.parent("resetBut");
+  resetBut.attribute('disabled', '');
+  resetBut.style("font-family:courier;font-size:13px;width:150px;");
+  resetBut.mousePressed(resetImgNum)
+
+  enSave=createCheckbox('edit settings');
+  enSave.parent("enableSaveChk");
+  enSave.changed(enableSaveOp);
+  enSave.style("width:150px;margin-top:15px;margin-bottom:25px;")
 
   zoom = createSlider(0, 500, 0, 0.5)
   zoomDiv = createDiv("img zoom: " + zoom.value() + "px", true)
   zoomDiv.parent("zoom")
   zoom.parent("zoom")
-  zoom.style('width','200px')
+  zoom.style("width:200px;")
+  zoomDiv.style("padding-top:20px;border-style: solid none none none; border-color: #afabaf")
 
-  // 75 is GM's default so I have that set as the maximum
-  // since I want to encurage lossy-ness. Max can be set back to 100.
-  quality = createSlider(1,75,75,1)
+  // 75 is GM's default so I have that set as the default here too
+  // I want to encurage lossy-ness but quality can be set to a max of 100
+  quality = createSlider(1,100,45,1)
   qualityDiv=createDiv("qulaity: "+quality.value(),true)
   qualityDiv.parent("quality")
   quality.parent("quality")
@@ -111,21 +120,21 @@ function setup() {
   saturationDiv=createDiv("saturation: "+saturationSlider.value(),true)
   saturationDiv.parent("extras")
   saturationSlider.parent("extras")
-  saturationSlider.style('width','200px')
+  saturationSlider.style("width:200px;")
 
-  redChan=createSlider(-0.125,0.125,0,0.001)
+  redChan=createSlider(-0.25,0.25,0,0.01)
   redDiv=createDiv("red: "+redChan.value(),true)
   redDiv.parent("redC")
   redChan.parent("redC")
   redChan.style('width','175px')
 
-  greenChan=createSlider(-0.125,0.125,0,0.001)
+  greenChan=createSlider(-0.25,0.25,0,0.01)
   greenDiv=createDiv("green: "+greenChan.value(),true)
   greenDiv.parent("greenC")
   greenChan.parent("greenC")
   greenChan.style('width','175px')
 
-  blueChan=createSlider(-0.125,0.125,0,0.001)
+  blueChan=createSlider(-0.25,0.25,0,0.01)
   blueDiv=createDiv("blue: "+blueChan.value(),true)
   blueDiv.parent("blueC")
   blueChan.parent("blueC")
@@ -135,84 +144,72 @@ function setup() {
   sharpnessDiv=createDiv("sharpness: "+sharpnessSlider.value(),true)
   sharpnessDiv.parent("extras")
   sharpnessSlider.parent("extras")
-  sharpnessSlider.style('width','200px')
+  sharpnessSlider.style("width:200px;")
 
-  rotateImg = createSlider(-90, 90, 0, 0.05)
+  rotateImg = createSlider(-90, 90, 0, 1)
   rotateImgDiv = createDiv("rotate: " + rotateImg.value() + "°", true)
   rotateImgDiv.parent("rotate")
   rotateImg.parent("rotate")
   rotateImg.style('width','200px')
 
-  jitterImg=createSlider(0, 30, 0, 0.5);
+  jitterImg=createSlider(0, 10, 0, 0.5);
   jitterDiv=createDiv("jitter: "+ jitterImg.value(),true);
   jitterDiv.parent("jitter");
   jitterImg.parent("jitter");
-  jitterImg.style('width','200px')
+  jitterImg.style("width:200px;margin-bottom:25px;")
 
   noiseSlider = createSlider(0,100,0,1);
   noiseDiv = createDiv("noise: " + noiseSlider.value(), true);
   noiseDiv.parent("noise");
   noiseSlider.parent("noise");
-  noiseSlider.style('width', '200px')
+  noiseSlider.style('width', '200px');
+  noiseDiv.style("padding-top:20px;border-style: solid none none none; border-color: #afabaf")
 
-  // gifCompression=createSlider(0, 10000, 100, 10);
-  // gifCompDiv=createDiv("gif quality: "+ gifCompression.value(),true);
-  // gifCompDiv.parent("gifCompTxt");
-  // gifCompDiv.style("font-size:12px;margin-left:10px");
-  // gifCompression.parent("gifCompSld");
-  // gifCompression.style("width:175px;margin-left:10px")
-
-  imgOpacity=createSlider(0, 1, 1, 0.01);
+  imgOpacity=createSlider(0.01, 1, 1, 0.01);
   imgOpDiv=createDiv("opacity: " + floor(imgOpacity.value()*100), true);
   imgOpDiv.parent("imgOpacity");
   imgOpacity.parent("imgOpacity");
   imgOpacity.style('width','200px');
 
+  smpSize=createSlider(0.5,2,1.9,0.1);
+  smpSizeDiv=createDiv("sample factor: "+smpSize.value(),true);
+  smpSizeDiv.parent("sampleSize");
+  smpSize.parent("sampleSize");
+  smpSize.style("width:200px;")
+
   blendSel = createSelect()
   blendSel.option(BLEND)
-  blendSel.option(ADD)
   blendSel.option(DARKEST)
   blendSel.option(LIGHTEST)
+  blendSel.option(ADD)
   blendSel.option(MULTIPLY)
   blendSel.option(SCREEN)
   blendSel.option(OVERLAY)
+  blendSel.option(HARD_LIGHT)
   blendSel.option(SOFT_LIGHT)
   blendSel.option(DODGE)
   blendSel.option(BURN)
   blendSel.option(DIFFERENCE)
   blendSel.option(EXCLUSION)
   blendSel.parent("blendSelect")
-  blendSel.style("font-family:courier;")
-  // blendSel.id("test3")
+  blendSel.style("font-family:courier;margin-left:20px;")
 
   blendSelImg = createSelect()
   blendSelImg.option(BLEND)
-  blendSelImg.option(ADD)
   blendSelImg.option(DARKEST)
   blendSelImg.option(LIGHTEST)
+  blendSelImg.option(ADD)
   blendSelImg.option(MULTIPLY)
   blendSelImg.option(SCREEN)
   blendSelImg.option(OVERLAY)
+  blendSelImg.option(HARD_LIGHT)
   blendSelImg.option(SOFT_LIGHT)
   blendSelImg.option(DODGE)
   blendSelImg.option(BURN)
   blendSelImg.option(DIFFERENCE)
   blendSelImg.option(EXCLUSION)
   blendSelImg.parent("blendSelectImg")
-  blendSelImg.style("font-family:courier;")
-  // blendSelImg.id("test4")
-
-
-  compressButton = createButton("compress");
-  compressButton.mousePressed(compress);
-  compressButton.mouseReleased(returnServedImage)
-  compressButton.parent("compressButton")
-  compressButton.style("font-family:courier;")
-
-  saveButton = createButton("save")
-  saveButton.mousePressed(justSaveCanvas);
-  saveButton.parent("saveButton")
-  saveButton.style("font-family:courier;margin:5px")
+  blendSelImg.style("font-family:courier;margin-bottom:10px")
 
   //color stuff
   Hue = createSlider(0, 360, 0, 1)
@@ -227,21 +224,46 @@ function setup() {
   colorDiv = createDiv('')
   colorDiv.parent("colorBox")
 
+  clrPBlk = createDiv('')
+  clrPBlk.parent("colorPalBlk")
+  clrPGry = createDiv('')
+  clrPGry.parent("colorPalGry")
+  clrPWht = createDiv('');
+  clrPWht.parent("colorPalWht")
+  clrPRed = createDiv('');
+  clrPRed.parent("colorPalRed")
+  clrPBlu = createDiv('');
+  clrPBlu.parent("colorPalBlu")
+  clrPYlw = createDiv('');
+  clrPYlw.parent("colorPalYlw")
+
+  clrPGrn = createDiv('');
+  clrPGrn.parent("colorPalGrn")
+  clrPOrg = createDiv('');
+  clrPOrg.parent("colorPalOrg");
+  clrPPrp = createDiv('');
+  clrPPrp.parent("colorPalPrp");
+  clrPCyn = createDiv('');
+  clrPCyn.parent("colorPalCyn");
+  clrPMgt = createDiv('');
+  clrPMgt.parent("colorPalMgt");
+  clrPLim = createDiv('');
+  clrPLim.parent("colorPalLim")
 
   //draw stuff
   drawOptions = createRadio("drwOpt");
   var temp = drawOptions.option('1',"line");   //line
   drawOptions.option('2', "spray");             //spray
   drawOptions.option('3', "color picker");             //color picker
-  drawOptions.parent("drawOptions")
+  drawOptions.parent("drawOptions");
   temp.checked = true
 
   imageFit = createRadio("imgFit");
   var fitTemp = imageFit.option('1',"contain");
   imageFit.option('2',"cover");
   imageFit.parent("dropFit");
+  imageFit.style("margin-bottom:20px;")
   fitTemp.checked = true
-
 
   //Line
   lineOptions = document.getElementById("lineContainter")
@@ -252,13 +274,13 @@ function setup() {
   lineSize.parent('lineSize')
   lineSize.style('width','200px')
 
-  lineAlpha = createSlider(0, 1, 1, 0.01)
-  lineAlphaDiv = createDiv('line alpha: ' + floor(lineAlpha.value()*100), true)
+  lineAlpha = createSlider(0.01, 1, 1, 0.01)
+  lineAlphaDiv = createDiv('line opacity: ' + floor(lineAlpha.value()*100), true)
   lineAlphaDiv.parent('lineAlpha')
   lineAlpha.parent('lineAlpha')
   lineAlpha.style('width','200px')
 
-  //Spraypaint
+  //Spray
   sprayOptions = document.getElementById("sprayContainer")
 
   sprayDiameter = createSlider(1, 100, 25, 1)
@@ -273,7 +295,7 @@ function setup() {
   // }
 
 
-  sprayDensity = createSlider(0.1, 20, 5, 0.1)
+  sprayDensity = createSlider(1, 100, 20, 1)
   densityDiv = createDiv('spray density: ' + sprayDensity.value(), true)
   densityDiv.parent('sprayDensity')
   sprayDensity.parent('sprayDensity')
@@ -285,19 +307,12 @@ function setup() {
   sprayDotSize.parent('dotSize')
   sprayDotSize.style('width','200px')
 
-  sprayAlpha = createSlider(0, 1, 0.7, 0.01)
-  sAlphaDiv = createDiv('spray alpha: ' + floor(sprayAlpha.value()*100), true)
+  sprayAlpha = createSlider(0.01, 1, 0.7, 0.01)
+  sAlphaDiv = createDiv('spray opacity: ' + floor(sprayAlpha.value()*100), true)
   sAlphaDiv.parent('sprayAlpha')
   sprayAlpha.parent('sprayAlpha')
   sprayAlpha.style('width','200px')
-
-  // h = Hue.value();
-  // s = Saturation.value();
-  // l = Lightness.value();
-
 }
-
-
 
 var drawLineWeight = 0
 var bItem
@@ -312,60 +327,54 @@ function selectBlendModeImg() {
   blendMode(bImgItem)
 }
 
+//drag and drop image
 function gotFile(file) {
-  blendMode(blendSelImg.value())
-  imageMode(CENTER)
-  img = createImg(file.data).hide();
-  var setFitting = CONTAIN
-  var fitVal = imageFit.value()
-  console.log(fitVal)
-  if (fitVal === '1'){
-    setFitting = CONTAIN
-    console.log(setFitting)
-  } else{
-    setFitting = COVER
-    console.log(setFitting)
+  if (saveEditing == false){
+    blendMode(blendSelImg.value())
+    imageMode(CENTER)
+    pg = createGraphics(width,height);
+    img = createImg(file.data).hide();
+    //dropped image sizing
+    var setFitting = CONTAIN
+    var fitVal = imageFit.value()
+    if (fitVal === '1'){
+      setFitting = CONTAIN //resizes dropped image to fit inside canvas
+    } else{
+      setFitting = COVER //resizes dropped image to fill canvas space
+    }
+    tint(100,imgOpacity.value())
+    pg.image(img, 0, 0, width, height, 0, 0, img.width, img.height, setFitting)
+    image(pg,width/2,height/2)
   }
-  // if (fitVal == '1'){
-  //   imageFit = CONTAIN
-  // } else {
-  //   imageFit = COVER
-  // }
-  image(img, width/2, height/2, width, height, 0, 0, img.width, img.height, setFitting)
-  // selectBlendMode()
-  // item = blendSel.value();
+}
+
+//reset image numbers for current project
+function resetImgNum(){
+  imgNumber = 0;
+  standAloneSaveNum = 0;
 }
 
 function draw() {
-  // console.log(drawVal)
   blendSel.changed(selectBlendMode)
-  // blendSelImg.changed(selectBlendModeImg)
 
-  // sprayDiameter.style("margin:10px;width: 200px;")
-  // sprayDensity.style("margin:10px;width: 200px;")
-  // sprayDotSize.style("margin:10px;width: 200px;")
-  // sprayAlpha.style("margin:10px;width: 200px;")
-
-  // this below used to update the displayed slider values. Can't fix it right now
-
+  //slider values to be updated in draw loop
   diameterDiv.html('spray diameter: ' + sprayDiameter.value(), false);
   densityDiv.html('spray density: ' + sprayDensity.value(), false);
   dotSizeDiv.html('particle size: ' + sprayDotSize.value(), false);
-  sAlphaDiv.html('spray alpha: ' + floor(sprayAlpha.value()*100), false);
-  //
+  sAlphaDiv.html('spray opacity: ' + floor(sprayAlpha.value()*100), false);
+
   lineSizeDiv.html('line size: ' + lineSize.value(), false);
-  lineAlphaDiv.html('line alpha: ' + floor(lineAlpha.value()*100), false);
-  //
+  lineAlphaDiv.html('line opacity: ' + floor(lineAlpha.value()*100), false);
+
   zoomDiv.html("zoom: " + zoom.value() + "px", false)
   qualityDiv.html("qulaity: "+quality.value(),false)
-  //
+  smpSizeDiv.html("sample factor: "+smpSize.value(),false);
+
   rotateImgDiv.html("rotate: " + rotateImg.value() + "°", false)
 
   jitterDiv.html("jitter: " + jitterImg.value(),false)
 
   noiseDiv.html("noise: " + noiseSlider.value(), false)
-
-  // gifCompDiv.html("gif quality: " + gifCompression.value())
 
   saturationDiv.html("saturation: "+saturationSlider.value(),false)
   sharpnessDiv.html("sharpness: "+sharpnessSlider.value(),false)
@@ -376,25 +385,91 @@ function draw() {
   greenDiv.html("green: "+greenChan.value(),false)
   blueDiv.html("blue: "+blueChan.value(), false)
 
-  // End of slider stuff that needs fixing above
+  resetButDiv.html("img count: "+imgNumber, false)
 
-  //color draw stuff
-  // console.log(temp[0])
+  //color selection slider values
   h = Hue.value()
   s = Saturation.value()
   l = Lightness.value()
-  // a = 1
-  clr = color(h, s, l, a)
-  sprayClr = color(h, s, l, random(.01,a))
-    // pickClr = color()
-    // mainClr=
-  colorDiv.style("width:60px;height:50px;background-color:hsl(" + h + "," + s + "%," + l + "%);margin:5px;padding-bottom:10px")
+  clr = color(h, s, l, a) //selected color data
+  sprayClr = color(h, s, l, random(a*0.75,a)) //color data for spray tool
+  //display current color in color select
+  colorDiv.style("width:60px;height:55px;background-color:hsl(" + h + "," + s + "%," + l + "%);margin-left:5px;padding-bottom:5px");
+  clrPBlk.style("width:10px;height:10px;background-color:hsl(0,100%,0%);")
+  clrPWht.style("width:9px;height:9px;background-color:hsl(0,100%,100%);border:black 1px;border-style: solid solid none none")
+  clrPGry.style("width:9px;height:9px;background-color:hsl(0,0%,50%);border:black 1px;border-style: solid solid none none")
+  clrPRed.style("width:9px;height:9px;background-color:hsl(0,100%,50%);border:black 1px;border-style: solid solid none none")
+  clrPGrn.style("width:9px;height:9px;background-color:hsl(120,100%,25%);border:black 1px;border-style: solid solid none none")
+  clrPBlu.style("width:9px;height:9px;background-color:hsl(240,100%,50%);border:black 1px;border-style: solid solid none none")
+  clrPCyn.style("width:8px;height:9px;background-color:hsl(180,100%,50%);border:black 1px;border-style: solid solid solid solid")
+  clrPMgt.style("width:9px;height:9px;background-color:hsl(300,100%,50%);border:black 1px;border-style: solid solid solid none")
+  clrPYlw.style("width:9px;height:9px;background-color:hsl(60,100%,50%);border:black 1px;border-style: solid solid solid none")
+  clrPOrg.style("width:9px;height:9px;background-color:hsl(39,100%,50%);border:black 1px;border-style: solid solid solid none")
+  clrPLim.style("width:9px;height:9px;background-color:hsl(90,100%,50%);border:black 1px;border-style: solid solid solid none")
+  clrPPrp.style("width:9px;height:9px;background-color:hsl(300,100%,25%);border:black 1px;border-style: solid solid solid none")
 
+  var blkPicked = document.getElementById("colorPalBlk")
+  blkPicked.onclick = function(){
+    document.getElementById("test").value = 0;document.getElementById("test1").value = 100;document.getElementById("test2").value = 0;
+  }
+  var gryPicked = document.getElementById("colorPalGry")
+  gryPicked.onclick = function(){
+    document.getElementById("test").value = 0;document.getElementById("test1").value = 0;document.getElementById("test2").value = 50;
+  }
+  var whtPicked = document.getElementById("colorPalWht")
+  whtPicked.onclick = function(){
+    document.getElementById("test").value = 0;document.getElementById("test1").value = 100;document.getElementById("test2").value = 100;
+  }
 
+  var redPicked = document.getElementById("colorPalRed")
+  redPicked.onclick = function(){
+    document.getElementById("test").value = 0;document.getElementById("test1").value = 100;document.getElementById("test2").value = 50;
+  }
+  var grnPicked = document.getElementById("colorPalGrn")
+  grnPicked.onclick = function(){
+    document.getElementById("test").value = 120;document.getElementById("test1").value = 100;document.getElementById("test2").value = 25;
+  }
+  var bluPicked = document.getElementById("colorPalBlu")
+  bluPicked.onclick = function(){
+    document.getElementById("test").value = 240;document.getElementById("test1").value = 100;document.getElementById("test2").value = 50;
+  }
+  var cynPicked = document.getElementById("colorPalCyn")
+  cynPicked.onclick = function(){
+    document.getElementById("test").value = 180;document.getElementById("test1").value = 100;document.getElementById("test2").value = 50;
+  }
+  var mgtPicked = document.getElementById("colorPalMgt")
+  mgtPicked.onclick = function(){
+    document.getElementById("test").value = 300;document.getElementById("test1").value = 100;document.getElementById("test2").value = 50;
+  }
+  var ylwPicked = document.getElementById("colorPalYlw")
+  ylwPicked.onclick = function(){
+    document.getElementById("test").value = 60;document.getElementById("test1").value = 100;document.getElementById("test2").value = 50;
+  }
+  var orgPicked = document.getElementById("colorPalOrg")
+  orgPicked.onclick = function(){
+    document.getElementById("test").value = 39;document.getElementById("test1").value = 100;document.getElementById("test2").value = 50;
+  }
+  var limPicked = document.getElementById("colorPalLim")
+  limPicked.onclick = function(){
+    document.getElementById("test").value = 120;document.getElementById("test1").value = 100;document.getElementById("test2").value = 50;
+  }
+  var prpPicked = document.getElementById("colorPalPrp")
+  prpPicked.onclick = function(){
+    document.getElementById("test").value = 300;document.getElementById("test1").value = 100;document.getElementById("test2").value = 25;
+  }
 
   var drawVal = drawOptions.value()
-  if (mouseIsPressed & drawVal == '1') {
-    // console.log("running")
+
+  //show and hide line options
+  if (drawVal == '1') {
+    a = lineAlpha.value();
+    lineOptions.style.display = "flex";
+    lineOptions.style.flexDirection = "column";
+  } else {
+    lineOptions.style.display = "none"
+  }
+  //line tool
+  if (mouseIsPressed & drawVal == '1' & saveEditing == false) {
     if (millis() > next && painting) {
       paths[paths.length - 1].add(1)
       next = millis()
@@ -412,14 +487,6 @@ function draw() {
     painting = false
     paths = []
   }
-  //show and hide line options
-  if (drawVal == '1') {
-    a = lineAlpha.value();
-    lineOptions.style.display = "flex";
-    lineOptions.style.flexDirection = "column";
-  } else {
-    lineOptions.style.display = "none"
-  }
 
   //show and hide spray options
   if (drawVal == '2') {
@@ -429,53 +496,70 @@ function draw() {
   } else {
     sprayOptions.style.display = "none"
   }
-
-  if (mouseIsPressed & drawVal == '2') {
-    // h = Hue.value()
-    // s = Saturation.value()
-    // l = Lightness.value()
-      // console.log(sprayOptions)
-
-    var sDiameter = sprayDiameter.value();
+  //spray tool
+  if (mouseIsPressed & drawVal == '2' & saveEditing == false) {
+    var sDiameter = sprayDiameter.value()/2;
     var sDensity = sprayDensity.value();
     var sDotSize = sprayDotSize.value();
     // var sAlpha = sprayAlpha.value();
     // var sDotRand = sprayDotRand.value()
-
-    var items = random(sDensity) * (sDiameter / 1.5);
+    var items = random(sDensity) * ((sDiameter / 2)/sDotSize);
     for (var i = 0; i < items; i++) {
-
-      var x = 0 + sDiameter * Math.cos(2 * Math.PI * i / items);
-      var y = 0 + sDiameter * Math.sin(2 * Math.PI * i / items);
+      var x = 0 + sDiameter * Math.cos(2 * Math.PI * i / (items*random(-1,1)));
+      var y = 0 + sDiameter * Math.sin(2 * Math.PI * i / (items*random(-1,1)));
       push();
       translate(mouseX, mouseY)
       rotate(random(360))
       noStroke()
       fill(sprayClr)
-
       ellipse(random(x), random(y), random(0.25, sDotSize * 1.5))
       pop()
     }
   }
+
+  //show and hide color picker options
+  // if (drawVal == '3') {
+  //   compressButton.hide()
+  // } else {
+  //   compressButton.show()
+  // }
+  //color picker tool
   if (mouseIsPressed & drawVal == '3' & mouseX>0&mouseX<width&mouseY>0&mouseY<height) {
     c = get(mouseX, mouseY)
     temp = rgbToHsl()
     document.getElementById("test").value = temp[0]
     document.getElementById("test1").value = temp[1]
     document.getElementById("test2").value = temp[2]
-  //   h = temp[0]
-  // s = temp[1]
-  // l = temp[2]
   }
-  if (drawVal == '3') {
-    compressButton.hide()
-  } else {
-    compressButton.show()
-  }
-  // console.log(drawOptions.value())
 }
+
+//Enables file options and dissable saving and drawing
+function enableSaveOp(){
+  if (this.checked()){
+    saveEditing = true;
+    saveFileName.removeAttribute('disabled');
+    resetBut.removeAttribute('disabled');
+
+    saveButton.attribute('disabled', '');
+    compressButton.attribute('disabled', '');
+    gifButton.attribute('disabled', '');
+  }
+  //Disables file options and enables saving and drawing
+  else{
+    saveEditing = false;
+    saveFileName.attribute('disabled', '');
+    resetBut.attribute('disabled', '');
+
+    saveButton.removeAttribute('disabled');
+    compressButton.removeAttribute('disabled');
+    gifButton.removeAttribute('disabled');
+  }
+}
+
 var temp
-  //Draw vertex stuff
+
+//Draw vertex stuff
+//Adapted from the p5.js example "Hello P5: drawing"
 function DrawLine() {
   this.vertexs = [];
 }
@@ -496,7 +580,6 @@ DrawLine.prototype.display = function() {
     }
   }
 }
-
 function DrawVertex(position) {
   this.x = mouseX
   this.y = mouseY
@@ -513,34 +596,23 @@ DrawVertex.prototype.display = function() {
     strokeJoin(ROUND)
     curveVertex(this.x, this.y)
   }
-  //Draw vertex stuff end
 
 
-
-var imgNumber = 0
-var stringNumber
-var standAloneSaveNum = 0
 var on = false
 
+//Save current canvas with no added compression
 function justSaveCanvas() {
   stringNumber = String(standAloneSaveNum).padStart(5,'0')
-  save("just the canvas MyCanvas"+stringNumber+".jpg");
+  save(saveFileName.value()+stringNumber+".jpg");
   standAloneSaveNum++;
 }
 
+//Send current canvas to server to compress when button/key is pressed
 function compress() {
   stringNumber = String(imgNumber).padStart(5,'0')
-  // if (button.mousePressed() === true){
-  // save(cnv,"image"+imgNumber,".jpg")
-  // selectBlendMode()
-  save("MyCanvas"+stringNumber+".jpg");
-  // save("MyCurrentCanvas.jpg");
-  // save('../111/'+"MyCanvas"+stringNumber+".jpg");
+  cmprssName = saveFileName.value()+"-cmprss-"
+  save(cmprssName+stringNumber+".jpg");
   on = true;
-  // calledThing()
-  // } else{
-  //   on=false
-  // }
   imgNumber = imgNumber + 1
   var cData = {
     trig: on,
@@ -553,22 +625,16 @@ function compress() {
     noiseNum: noiseSlider.value(),
     redVal: 1+redChan.value(),
     greenVal: 1+greenChan.value(),
-    blueVal: 1+blueChan.value()
+    blueVal: 1+blueChan.value(),
+    saveName: "/"+cmprssName,
+    canvasWidth: width,
+    scaleFctr: smpSize.value()
   }
-  // console.log("it's in compress")
   socket.emit('trigger', cData)
-  // console.log(on)
-    //   setTimeout(function(){
-    //     loadImage(imgNumber+"MyCanvas.jpg", function(img) {
-    //       translate(windowWidth/2,windowHeight/2)
-    //   image(img, 0, 0,650,650);
-    // });
-    //   },1500)
 
 }
 
-
-
+//Open compressed canvas on key/button release
 function returnServedImage() {
   stringNumber = String(imgNumber).padStart(5,'0')
   on = false
@@ -584,27 +650,26 @@ function returnServedImage() {
       translate(width/2+random(jitterImg.value()*-1,jitterImg.value()), height/2+random(jitterImg.value()*-1,jitterImg.value()))
       image(img, 0, 0, width, height);
       rotate(rotateImg.value())
-
-      image(img, 0, 0, width + zoom.value() + random(jitterImg.value()*-1,jitterImg.value()), height + zoom.value() + random(jitterImg.value()*-1,jitterImg.value()));
-
-
+      image(img, 0, 0, width + zoom.value() + random(jitterImg.value()*-1,jitterImg.value()), height + (zoom.value()*0.67) + random(jitterImg.value()*-1,jitterImg.value()));
 
       selectBlendMode()
     });
   }, 250)
 }
 
+//press tilde key to compress image
 function keyPressed(){
-  if (keyCode === 192){
+  if (keyCode === 192 & saveEditing == false){
     compress()
   }
 }
 function keyReleased(){
-  if (keyCode === 192){
+  if (keyCode === 192 & saveEditing == false){
     returnServedImage()
   }
 }
 
+//RGB to HSL formula
 function rgbToHsl(r, g, b) {
   r = c[0]
   g = c[1]
@@ -635,34 +700,24 @@ function rgbToHsl(r, g, b) {
 
   return [Math.floor(h * 360), Math.floor(s * 100), Math.floor(l * 100)];
 }
+
 var gifOn=false
+
+//Sends data to server to make a gif of current sequence
 function makeGif(){
   gifOn=true;
+  gifName=saveFileName.value()
   var cData2 = {
     trig2:gifOn,
-    sendCounter:100// imgNumber
-    // gifComp:gifCompression.value()
+    sendCounter:100,// imgNumber
+    saveName: "/"+gifName+"*",
+    saveNameOut: "/"+gifName
   }
   console.log("it's in gif")
   socket.emit('gif',cData2)
 }
+
+//resets gif button to false
 function finishGif(){
   gifOn=false
 }
-var sharpOn=false
-function sharpEvent(){
-  if (this.checked()){
-    sharpOn=true
-  } else{
-    sharpOn=false
-  }
-}
-
-// function sendDir(){
-//   // dirFolderName.value("dumb")
-//
-//   var data3 = {
-//     folderName:dirFolderName.value()
-//   }
-//   socket.emit('dumb',data3)
-// }
