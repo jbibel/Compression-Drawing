@@ -6,7 +6,20 @@ Compression Drawing is a drawing tool that explores JPEG compression artifacts a
 You can draw images on the canvas, save it, and then seamlessly place that saved image on the canvas to draw back on top of.
 <!-- The process of saving an image as a jpeg file is lossy, meaning some data can be lost every time it is saved and can't be restored. Over many repeated saves, visual distortions can start to emerge known as compression artifacts. While generally considered undesired, I find them aesthetically and conceptually interesting with how they age an image like how physical media deteriorates overtime. This tool was made to streamline the process of propigating these artifacts and add to them by drawing with each save. -->
 
-It is made with [p5.js](https://p5js.org/) and the node package [GM](https://aheckmann.github.io/gm/) wraped in [Electron](https://www.electronjs.org/).
+It is made with [p5.js](https://p5js.org/) and the node package [GM](https://aheckmann.github.io/gm/) wraped in [Electron](https://www.electronjs.org/).<br>
+## Select Examples:
+
+![](readme-files/example-images/littleLegs.jpg)
+
+![](readme-files/example-images/thisCanvas-cmprss-00627.jpg)
+
+![](readme-files/example-images/wormBod.jpg)
+
+![](readme-files/example-images/duo00001.jpg)
+
+![](readme-files/example-images/shoot00001.jpg)
+
+[More can be found here.](readme-files/example-images)
 
 # So... can I actually run it
 
