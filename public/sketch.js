@@ -47,7 +47,7 @@ function setup() {
     };
   }
 
-  pixelDensity(2)
+  pixelDensity()
   var cRatio = 720
   var cnv = createCanvas(cRatio, floor(cRatio*0.67))
   // var cnv = createCanvas(512, 512)
@@ -110,7 +110,7 @@ function setup() {
 
   // 75 is GM's default so I have that set as the default here too
   // I want to encurage lossy-ness but quality can be set to a max of 100
-  quality = createSlider(1,100,45,1)
+  quality = createSlider(1,100,20,1)
   qualityDiv=createDiv("qulaity: "+quality.value(),true)
   qualityDiv.parent("quality")
   quality.parent("quality")
@@ -140,7 +140,7 @@ function setup() {
   blueChan.parent("blueC")
   blueChan.style('width','175px')
 
-  sharpnessSlider = createSlider(1,100,1,1)
+  sharpnessSlider = createSlider(1,100,5,1)
   sharpnessDiv=createDiv("sharpness: "+sharpnessSlider.value(),true)
   sharpnessDiv.parent("extras")
   sharpnessSlider.parent("extras")
@@ -171,7 +171,7 @@ function setup() {
   imgOpacity.parent("imgOpacity");
   imgOpacity.style('width','200px');
 
-  smpSize=createSlider(0.5,2,1.9,0.1);
+  smpSize=createSlider(0.5,2,1,0.1);
   smpSizeDiv=createDiv("sample factor: "+smpSize.value(),true);
   smpSizeDiv.parent("sampleSize");
   smpSize.parent("sampleSize");
@@ -301,7 +301,7 @@ function setup() {
   sprayDensity.parent('sprayDensity')
   sprayDensity.style('width','200px')
 
-  sprayDotSize = createSlider(0.5, 10, 1, 0.5)
+  sprayDotSize = createSlider(1, 10, 1, 1)
   dotSizeDiv = createDiv('dot size: ' + sprayDotSize.value(), true)
   dotSizeDiv.parent('dotSize')
   sprayDotSize.parent('dotSize')
