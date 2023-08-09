@@ -7,6 +7,7 @@ You can draw images on the canvas, save it, and then seamlessly place that saved
 <!-- The process of saving an image as a jpeg file is lossy, meaning some data can be lost every time it is saved and can't be restored. Over many repeated saves, visual distortions can start to emerge known as compression artifacts. While generally considered undesired, I find them aesthetically and conceptually interesting with how they age an image like how physical media deteriorates overtime. This tool was made to streamline the process of propigating these artifacts and add to them by drawing with each save. -->
 
 It is made with [p5.js](https://p5js.org/) and the node package [GM](https://aheckmann.github.io/gm/) wraped in [Electron](https://www.electronjs.org/).<br>
+
 ## Select Examples:
 
 ![](readme-files/example-images/littleLegs.jpg)
@@ -20,6 +21,24 @@ It is made with [p5.js](https://p5js.org/) and the node package [GM](https://ahe
 ![](readme-files/example-images/shoot00001.jpg)
 
 [More can be found here.](readme-files/example-images)
+
+
+# How do I work this thing?
+
+<details><summary>*this section is a work in progress*</summary>
+- First of all, when you click the "compress" button in the lower left area that will compress the current canvas.  
+- You can also press the tilde key (`~`) to also compress.  
+- The sliders and options on the right will effect how the image is processed. A key slider, the one labeled "quality", determines the overall compression. Higher means less compression and lower mean more.
+
+If you've used MS Paint then you'll feel slightly at home!  
+- There are three drawing tools to use; line, spray, and color picker.  
+- The line draws a line on the canvas. You can adjust the size and alpha/transparency.  
+- The spray tool acts like a spray can. You can adjust the diameter of the spray, the dot size of the spray, the density of the dots, and the alpha/transparency of the spray.  
+- Finally, the color picker will get the color value of whatever you click on inside of the canvas and will be used as the color for drawing tools.
+
+To view your image files, enter the app directory and head into the `public` folder and then into the `images` folder.  
+- Inside are two folders: `canvas` and `gif`. Your still images will be inside of the `canvas`.  
+- **IMPORTANT:** remember to move your images to a new and safe location after you exit the app. If you don't and start it up again the new drawing will save over the old ones.</details>
 
 # So... can I actually run it
 
@@ -50,18 +69,14 @@ Small instructions disclaimer: Since I am using a Mac, I have not tried these st
 5. Finally, type `npm start` and enter to run the app
 and with that, fingers and toes crossed, it should be running on your computer!</details>
 
-## How do I work this thing?
-<details><summary>*this section is a work in progress*</summary>
-- First of all, when you click the "compress" button in the lower left area that will compress the current canvas.  
-- You can also press the tilde key (`~`) to also compress.  
-- The sliders and options on the right will effect how the image is processed. A key slider, the one labeled "quality", determines the overall compression. Higher means less compression and lower mean more.
+# Sources and Thanks
 
-If you've used MS Paint then you'll feel slightly at home!  
-- There are three drawing tools to use; line, spray, and color picker.  
-- The line draws a line on the canvas. You can adjust the size and alpha/transparency.  
-- The spray tool acts like a spray can. You can adjust the diameter of the spray, the dot size of the spray, the density of the dots, and the alpha/transparency of the spray.  
-- Finally, the color picker will get the color value of whatever you click on inside of the canvas and will be used as the color for drawing tools.
+[p5js Electron template](https://github.com/garciadelcastillo/p5js-electron-templates)<br>
+[padded number algorithm](https://stackoverflow.com/a/43658705)<br>
+[random point on a circumference](https://stackoverflow.com/a/9879291)<br>
+[rgb to hsl algo:](https://gist.github.com/mjackson/5311256)<br>
+[line tool adapted from](https://p5js.org/examples/hello-p5-drawing.html)
 
-To view your image files, enter the app directory and head into the `public` folder and then into the `images` folder.  
-- Inside are two folders: `canvas` and `gif`. Your still images will be inside of the `canvas`.  
-- **IMPORTANT:** remember to move your images to a new and safe location after you exit the app. If you don't and start it up again the new drawing will save over the old ones.</details>
+
+
+
