@@ -16,7 +16,7 @@ It is made with [p5.js](https://p5js.org/) and the node package [GM](https://ahe
 
 ![](readme-files/example-images/wormBod.jpg)
 
-![](readme-files/example-images/duo00001.jpg)
+![](readme-files/example-images/bark00001.jpg)
 
 ![](readme-files/example-images/shoot00001.jpg)
 
