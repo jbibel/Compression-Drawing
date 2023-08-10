@@ -3,8 +3,8 @@
 
 Compression Drawing is a drawing tool that explores JPEG compression artifacts and recursive image processing.<br>
 
-You can draw images on the canvas, save it, and then seamlessly place that saved image on the canvas to draw back on top of.
-<!-- The process of saving an image as a jpeg file is lossy, meaning some data can be lost every time it is saved and can't be restored. Over many repeated saves, visual distortions can start to emerge known as compression artifacts. While generally considered undesired, I find them aesthetically and conceptually interesting with how they age an image like how physical media deteriorates overtime. This tool was made to streamline the process of propigating these artifacts and add to them by drawing with each save. -->
+You can draw images on the canvas, save it, and then seamlessly place that saved image on the canvas to draw back on top of.<br>
+The process of saving an image as a jpeg file is lossy, meaning some data can be lost every time it is saved and can't be restored. Over many repeated saves, visual distortions can start to emerge known as compression artifacts. While generally considered undesired, I find them aesthetically and conceptually interesting with how they age an image like how physical media deteriorates overtime. This tool was made to streamline the process of propigating these artifacts and add to them by drawing with each save. Utilize generation loss to find new textures and digitaly age your art.
 
 It is made with [p5.js](https://p5js.org/) and the node package [GM](https://aheckmann.github.io/gm/) wraped in [Electron](https://www.electronjs.org/).<br>
 
@@ -71,11 +71,11 @@ and with that, fingers and toes crossed, it should be running on your computer!<
 
 # Sources and Thanks
 
-[p5js Electron template](https://github.com/garciadelcastillo/p5js-electron-templates)<br>
+[p5.js Electron template](https://github.com/garciadelcastillo/p5js-electron-templates)<br>
 [padded number algorithm](https://stackoverflow.com/a/43658705)<br>
-[random point on a circumference](https://stackoverflow.com/a/9879291)<br>
-[rgb to hsl algo:](https://gist.github.com/mjackson/5311256)<br>
-[line tool adapted from](https://p5js.org/examples/hello-p5-drawing.html)
+[random point on a circumference algorithm](https://stackoverflow.com/a/9879291)<br>
+[rgb to hsl algorithm](https://gist.github.com/mjackson/5311256)<br>
+[line tool adapted from this p5.js example](https://p5js.org/examples/hello-p5-drawing.html)
 
 
 
