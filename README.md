@@ -25,7 +25,77 @@ It is made with [p5.js](https://p5js.org/) and the node package [GM](https://ahe
 
 # How do I work this thing?
 
-<details><summary>*this section is a work in progress*</summary>
+## File Settings and Saving
+<img src="readme-files/screenshots/1_file.png" width=300>
+
+All saved canvases can be found in the folder `/public/images/canvas` of this repository. Gifs are saved in the folder `/public/images/gifs`.
+
+- The first input lets you name the save file for each compression of a current canvas. The default name is "thisCanvas". *Note: using an existing name will lead to the older files to be writen over.*
+- The `reset img counter` button resets the internal counter that tracks how many saves have been executed. Above the button shows how many times the canvas has been compressed. Use this button after changing the file name so that it will start at zero.
+- The `edit settings` check box when checked allows you to use the file name input and reset button. While active, the save buttons and drawing are disabled to avoid accidental saves or unwanted marks on the canvas.
+
+- The `compress` button copresses the canvas and places the compressed save onto the canvas again following parameters set on the right side of the window. The tilde key `~` also has the same function. Using the button or the key rapidly at a fast speed can lead to an error form going faster than the canvas being compressed.
+- The `save` button just saves the current canvas ignoring the compression settings. This is useful for saving in progress work while not advancing the counter and for saving the final results of a project.
+- The `gif` button makes a gif out of all of the files with the name set in the file name input. *Note: using an existing name will lead to the older files to be writen over.*
+
+## Drawing Tools
+Select which tool to use by using the selection markers. When selected, the tools settings will appear for editing.
+The `draw blend` dropdown selects the blending method for the drawing tools. Please refer to the [p5.js documentaion](https://p5js.org/reference/#/p5/blendMode) for a list of what each mode is capable of. 
+### Line Tool
+<img src="readme-files/screenshots/2_drawLine.png" width=500>
+
+This is a basic pen-like tool.
+- The `line size` slider adjusts the size of the line. It is on a scale of 1 to 100.
+- The `line opacity` silder adjusts how transparent the line is. It is on a scale of 1 to 100.
+
+### Spray Tool
+<img src="readme-files/screenshots/3_drawSpray.png" width=500>
+
+This is a spray paint/air brush type of tool similar to ones found in MS Paint or Photoshop.
+- The `spray size` slider adjusts the diameter of the spray. It is on a scale of 1 to 100.
+- The `spray density` slider adjusts the density of spray particles from sparce to heavy. It is on a scale of 1 to 100.
+- The `particle size` slider adjusts the size of the dots that make up the spray. It is on a scale of 1 to 10.
+- The `spray opacity` slider adjusts the transparency of the spray particles. It is on a scale of 1 to 100.
+
+### Color Picker
+<img src="readme-files/screenshots/4_colorPicker.png" width=500>
+
+When selected, the mouse can be used to extract the color value of where it clicked on the canvas. Saving is disabled to avoid accidental compressions.
+
+### Color Palette
+<img src="readme-files/screenshots/5_colorPalette.png" width=500>
+
+- The `hue` slider selects the hue of the color.
+- The `sat` slider selects the saturation of the color.
+- The `lht` slider selects the lightness or darkness of the color.
+- The large square to the right of the color sliders shows current color value that is selected for drawing.
+- Below the color square is a twelve color palette for quick selection. Click one of the colors and that will become the current drawing color.
+
+## Compression Settings
+These setting pertain to how files are saved in the compression process and how those and other files are placed on the canvas.
+
+<img src="readme-files/screenshots/6a_compSet.png" width=300>
+
+- The `img blend` dropdown selects the blending method for images placed on the canvas, including drag and dropped files. Please refer to the [p5.js documentaion](https://p5js.org/reference/#/p5/blendMode) for a list of what each mode is capable of.
+- The `quality` slider sets the jpeg quality during compression.
+- The `opacity` slider sets the image transparancy when an image is placed on the canvas, including drag and dropped files.
+- The `sample factor` slider sets the resolution of jpeg durring compression from a scale of 0.5 to 2
+- The drag & drop fitting selection sets how image files that are dropped onto the window will be placed on the canvas. `Contain` will resize the dropped image so that it fits inside of the canvas. `Cover` will resize the image so that it fills the entire canvas. Images are placed relative to the center of the canvas.
+
+<img src="readme-files/screenshots/6b_compSet.png" width=300>
+
+- The `noise` slider sets the amount of noise added durring compression
+- the `saturation` slider sets the amount of saturation applied durring compression.
+- the `sharpness` slider sets the amount of a sharpen filter applied durring compression
+- The channel adjust section sets the intensity of the `red`, `green`, and `blue` color channels durring compression. Positive values will increase the intensity, while negative values will decrease intensity. Having all sliders at the same values can lead to brightening an image with positive values and darkening an image with negative values.
+  
+<img src="readme-files/screenshots/6c_compSet.png" width=300>
+
+- The `zoom` slider sets how zoomed in the image placed on the canvas will be after compressiom. The image is zoomed in relative to the center of the canvas.
+- The `rotate` slider sets the degree in which the image placed on the canvas is rotated after compression. 
+- The `jitter` slider sets the intensity for random scaling of the image placed on the canvas after compression.
+
+<details><summary>*early draft*</summary>
 - First of all, when you click the "compress" button in the lower left area that will compress the current canvas.  
 - You can also press the tilde key (`~`) to also compress.  
 - The sliders and options on the right will effect how the image is processed. A key slider, the one labeled "quality", determines the overall compression. Higher means less compression and lower mean more.
@@ -77,6 +147,11 @@ and with that, fingers and toes crossed, it should be running on your computer!<
 [rgb to hsl algorithm](https://gist.github.com/mjackson/5311256)<br>
 [line tool adapted from this p5.js example](https://p5js.org/examples/hello-p5-drawing.html)
 
+Thank you:
+
+- Chris Novello for the class you taught in 2017 I attended
+- Daniel Shiffman for *The Code Train* youtube series
+- Hito Steyerl for your *In Defense of the Poor Image* essay
 
 
 
