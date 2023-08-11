@@ -36,7 +36,7 @@ All saved canvases can be found in the folder `/public/images/canvas` of this re
 
 - The `compress` button copresses the canvas and places the compressed save onto the canvas again following parameters set on the right side of the window. The tilde key `~` also has the same function. Using the button or the key rapidly at a fast speed can lead to an error form going faster than the canvas being compressed.
 - The `save` button just saves the current canvas ignoring the compression settings. This is useful for saving in progress work while not advancing the counter and for saving the final results of a project.
-- The `gif` button makes a gif out of all of the files with the name set in the file name input. *Note: using an existing name will lead to the older files to be writen over.*
+- The `make_gif` button makes a gif out of all of the files with the name set in the file name input. *Note: using an existing name will lead to the older files to be writen over.*
 
 ## Drawing Tools
 Select which tool to use by using the selection markers. When selected, the tools settings will appear for editing.
