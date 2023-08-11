@@ -5,8 +5,8 @@ Compression Drawing is a drawing tool that explores JPEG compression artifacts a
 
 [Click here to watch a video of it in action.](https://www.youtube.com/embed/oB-JXcflJmw)
 
-You can draw images on the canvas, save it, and then seamlessly place that saved image on the canvas to draw back on top of.<br>
-The process of saving an image as a jpeg file is lossy, meaning some data can be lost every time it is saved and can't be restored. Over many repeated saves, visual distortions can start to emerge known as compression artifacts. While generally considered undesired, I find them aesthetically and conceptually interesting with how they age an image like how physical media deteriorates overtime. This tool was made to streamline the process of propigating these artifacts and add to them by drawing with each save. Utilize generation loss to find new textures and digitaly age your art.
+You can draw images on the canvas, save it, and then seamlessly place that saved image on the canvas to draw back on top of it.<br>
+The process of saving an image as a jpeg file is lossy, meaning some data can be lost every time it is saved and can't be restored. Over many repeated saves, visual distortions can start to emerge known as compression artifacts. While generally considered undesired, I find them aesthetically and conceptually interesting with how they age an image like how physical media deteriorates overtime. This tool was made to streamline the process of propagating these artifacts and add to them by drawing with each save. Utilize generation loss to find new textures and digitally age your art.
 
 It is made with [p5.js](https://p5js.org/) and the node package [GM](https://aheckmann.github.io/gm/) wraped in [Electron](https://www.electronjs.org/).<br>
 
@@ -32,13 +32,13 @@ It is made with [p5.js](https://p5js.org/) and the node package [GM](https://ahe
 
 All saved canvases can be found in the folder `/public/images/canvas` of this repository. Gifs are saved in the folder `/public/images/gifs`.
 
-- The first input lets you name the save file for each compression of a current canvas. The default name is "thisCanvas". *Note: using an existing name will lead to the older files to be writen over.*
+- The first input lets you name the save file for each compression of a current canvas. The default name is "thisCanvas". *Note: using an existing name will lead to the older files to be written over.*
 - The `reset img counter` button resets the internal counter that tracks how many saves have been executed. Above the button shows how many times the canvas has been compressed. Use this button after changing the file name so that it will start at zero.
 - The `edit settings` check box when checked allows you to use the file name input and reset button. While active, the save buttons and drawing are disabled to avoid accidental saves or unwanted marks on the canvas.
 
-- The `compress` button copresses the canvas and places the compressed save onto the canvas again following parameters set on the right side of the window. The tilde key `~` also has the same function. Using the button or the key rapidly at a fast speed can lead to an error form going faster than the canvas being compressed.
+- The `compress` button copresses the canvas and places the compressed save onto the canvas again following parameters set on the right side of the window. The tilde key `~` also has the same function. Using the button or the key rapidly at a fast speed can lead to an error from going faster than the canvas being compressed.
 - The `save` button just saves the current canvas ignoring the compression settings. This is useful for saving in progress work while not advancing the counter and for saving the final results of a project.
-- The `make_gif` button makes a gif out of all of the files with the name set in the file name input. *Note: using an existing name will lead to the older files to be writen over.*
+- The `make_gif` button makes a gif out of all of the files with the name set in the file name input. *Note: using an existing name will lead to the older file to be written over.*
 
 ## Drawing Tools
 Select which tool to use by using the selection markers. When selected, the tools settings will appear for editing.
@@ -48,14 +48,14 @@ The `draw blend` dropdown selects the blending method for the drawing tools. Ple
 
 This is a basic pen-like tool.
 - The `line size` slider adjusts the size of the line. It is on a scale of 1 to 100.
-- The `line opacity` silder adjusts how transparent the line is. It is on a scale of 1 to 100.
+- The `line opacity` slider adjusts how transparent the line is. It is on a scale of 1 to 100.
 
 ### Spray Tool
 <img src="readme-files/screenshots/3_drawSpray.png" width=500>
 
 This is a spray paint/air brush type of tool similar to ones found in MS Paint or Photoshop.
 - The `spray size` slider adjusts the diameter of the spray. It is on a scale of 1 to 100.
-- The `spray density` slider adjusts the density of spray particles from sparce to heavy. It is on a scale of 1 to 100.
+- The `spray density` slider adjusts the density of spray particles from sparse to heavy. It is on a scale of 1 to 100.
 - The `particle size` slider adjusts the size of the dots that make up the spray. It is on a scale of 1 to 10.
 - The `spray opacity` slider adjusts the transparency of the spray particles. It is on a scale of 1 to 100.
 
@@ -80,20 +80,20 @@ These setting pertain to how files are saved in the compression process and how 
 
 - The `img blend` dropdown selects the blending method for images placed on the canvas, including drag and dropped files. Please refer to the [p5.js documentaion](https://p5js.org/reference/#/p5/blendMode) for a list of what each mode is capable of.
 - The `quality` slider sets the jpeg quality during compression.
-- The `opacity` slider sets the image transparancy when an image is placed on the canvas, including drag and dropped files.
-- The `sample factor` slider sets the resolution of jpeg durring compression from a scale of 0.5 to 2
+- The `opacity` slider sets the image transparency when an image is placed on the canvas, including drag and dropped files.
+- The `sample factor` slider sets the resolution of jpeg during compression from a scale of 0.5 to 2
 - The drag & drop fitting selection sets how image files that are dropped onto the window will be placed on the canvas. `Contain` will resize the dropped image so that it fits inside of the canvas. `Cover` will resize the image so that it fills the entire canvas. Images are placed relative to the center of the canvas.
 
 <img src="readme-files/screenshots/6b_compSet.png" width=300>
 
-- The `noise` slider sets the amount of noise added durring compression
-- the `saturation` slider sets the amount of saturation applied durring compression.
-- the `sharpness` slider sets the amount of a sharpen filter applied durring compression
-- The channel adjust section sets the intensity of the `red`, `green`, and `blue` color channels durring compression. Positive values will increase the intensity, while negative values will decrease intensity. Having all sliders at the same values can lead to brightening an image with positive values and darkening an image with negative values.
+- The `noise` slider sets the amount of noise added during compression
+- the `saturation` slider sets the amount of saturation applied during compression.
+- the `sharpness` slider sets the amount of a sharpen filter applied during compression
+- The channel adjust section sets the intensity of the `red`, `green`, and `blue` color channels during compression. Positive values will increase the intensity, while negative values will decrease intensity. Having all sliders at the same values can lead to brightening an image with positive values and darkening an image with negative values.
   
 <img src="readme-files/screenshots/6c_compSet.png" width=300>
 
-- The `zoom` slider sets how zoomed in the image placed on the canvas will be after compressiom. The image is zoomed in relative to the center of the canvas.
+- The `zoom` slider sets how zoomed in the image placed on the canvas will be after compression. The image is zoomed in relative to the center of the canvas.
 - The `rotate` slider sets the degree in which the image placed on the canvas is rotated after compression. 
 - The `jitter` slider sets the intensity for random scaling of the image placed on the canvas after compression.
 
@@ -114,7 +114,7 @@ To view your image files, enter the app directory and head into the `public` fol
 
 # So... can I actually run it
 
-<details><summary>To the person reading this: yes! (click for instuctions)</summary>
+<details><summary>To the person reading this: yes! (click for instructions)</summary>
 If you are familiar with Node, NPM, and using a command-line interface, this will be very straight forward. Prerequisites are Node.JS, NPM, and GraphicsMagick
 
 If not, I recommend watching [this playlist](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6b36TzJidYfIYwTFEq3K5qH) by The Coding Train that I watched when first starting this project. This will hopefully give you a good explanation of Node, NPM, and command-line usage.
@@ -151,9 +151,9 @@ and with that, fingers and toes crossed, it should be running on your computer!<
 
 Thank you:
 
-- Chris Novello for the class you taught in 2017 I attended
-- Daniel Shiffman for *The Code Train* youtube series
-- Hito Steyerl for your *In Defense of the Poor Image* essay
+- Chris Novello, for the class you taught in 2017 I attended
+- Daniel Shiffman, for *The Code Train* youtube series
+- Hito Steyerl, for your *In Defense of the Poor Image* essay
 
 
 
