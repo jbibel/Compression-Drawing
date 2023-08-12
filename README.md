@@ -3,7 +3,7 @@
 
 Compression Drawing is a drawing tool that explores JPEG compression artifacts and recursive image processing.<br>
 
-[Click here to watch a video of it in action.](https://www.youtube.com/embed/oB-JXcflJmw)
+[Click here to watch a video of it in action.](https://www.youtube.com/watch?v=oB-JXcflJmw)
 
 You can draw images on the canvas, save it, and then seamlessly place that saved image on the canvas to draw back on top of it.<br>
 The process of saving an image as a jpeg file is lossy, meaning some data can be lost every time it is saved and can't be restored. Over many repeated saves, visual distortions can start to emerge known as compression artifacts. While generally considered undesired, I find them aesthetically and conceptually interesting with how they age an image like how physical media deteriorates overtime. This tool was made to streamline the process of propagating these artifacts and add to them by drawing with each save. Utilize generation loss to find new textures and digitally age your art.
