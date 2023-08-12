@@ -97,8 +97,7 @@ These setting pertain to how files are saved in the compression process and how 
 - The `rotate` slider sets the degree in which the image placed on the canvas is rotated after compression. 
 - The `jitter` slider sets the intensity for random scaling of the image placed on the canvas after compression.
 
-<details><summary>*early draft*</summary>
-- First of all, when you click the "compress" button in the lower left area that will compress the current canvas.  
+<details><summary>*early draft*</summary><br>
 - You can also press the tilde key (`~`) to also compress.  
 - The sliders and options on the right will effect how the image is processed. A key slider, the one labeled "quality", determines the overall compression. Higher means less compression and lower mean more.
 
@@ -114,7 +113,8 @@ To view your image files, enter the app directory and head into the `public` fol
 
 # So... can I actually run it
 
-<details><summary>To the person reading this: yes! (click for instructions)</summary>
+<details><summary>To the person reading this: yes! (click for instructions)</summary><br>
+Disclaimer: I am using macOS and do not have access to a computer running Windows. While I do think this can run on Windows, I have no way of testing if it will.<br>
 If you are familiar with Node, NPM, and using a command-line interface, this will be very straight forward. Prerequisites are Node.JS, NPM, and GraphicsMagick
 
 If not, I recommend watching [this playlist](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6b36TzJidYfIYwTFEq3K5qH) by The Coding Train that I watched when first starting this project. This will hopefully give you a good explanation of Node, NPM, and command-line usage.
