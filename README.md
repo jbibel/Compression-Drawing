@@ -152,7 +152,7 @@ and with that, fingers and toes crossed, it should be running on your computer!<
 Thank you:
 
 - Chris Novello, for the class you taught in 2017 I attended
-- Daniel Shiffman, for *The Code Train* youtube series
+- Daniel Shiffman, for *The Coding Train* youtube series
 - Hito Steyerl, for your *In Defense of the Poor Image* essay
 
 
