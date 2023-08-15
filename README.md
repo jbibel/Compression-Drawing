@@ -37,7 +37,7 @@ All saved canvases can be found in the folder `/public/images/canvas` of this re
 - The `edit settings` check box when checked allows you to use the file name input and reset button. While active, the save buttons and drawing are disabled to avoid accidental saves or unwanted marks on the canvas.
 
 - The `compress` button copresses the canvas and places the compressed save onto the canvas again following parameters set on the right side of the window. The tilde key `~` also has the same function. Using the button or the key rapidly at a fast speed can lead to an error from going faster than the canvas being compressed.
-- The `save` button just saves the current canvas ignoring the compression settings. This is useful for saving in progress work while not advancing the counter and for saving the final results of a project.
+- The `save` button just saves the current canvas as a png. Unlike a jpeg, a png uses lossless compression so little to no data is lost when saved. Using this button is useful for saving in progress work while not advancing the counter and for saving the final results of a project. 
 - The `make_gif` button makes a gif out of all of the files with the name set in the file name input. *Note: using an existing name will lead to the older file to be written over.*
 
 ## Drawing Tools
