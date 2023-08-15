@@ -600,10 +600,10 @@ DrawVertex.prototype.display = function() {
 
 var on = false
 
-//Save current canvas with no added compression
+//Save current canvas as a png with no added compression
 function justSaveCanvas() {
   stringNumber = String(standAloneSaveNum).padStart(5,'0')
-  save(saveFileName.value()+stringNumber+".jpg");
+  save(saveFileName.value()+stringNumber+".png");
   standAloneSaveNum++;
 }
 
