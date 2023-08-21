@@ -1,3 +1,12 @@
+var sepr = "/"
+var OS = navigator.userAgentData.platform
+if (OS == "Windows"){
+  sepr = "\\";
+}
+else {
+  sepr = "/";
+}
+
 
 var saveButton
 var sprayOptions
@@ -461,7 +470,7 @@ function draw() {
   var drawVal = drawOptions.value()
 
   //show and hide line options
-  if (drawVal == '1') {
+  if (drawVal === '1') {
     a = lineAlpha.value();
     lineOptions.style.display = "flex";
     lineOptions.style.flexDirection = "column";
@@ -469,7 +478,7 @@ function draw() {
     lineOptions.style.display = "none"
   }
   //line tool
-  if (mouseIsPressed & drawVal == '1' & saveEditing == false) {
+  if (mouseIsPressed & drawVal === '1' & saveEditing == false) {
     if (millis() > next && painting) {
       paths[paths.length - 1].add(1)
       next = millis()
@@ -489,7 +498,7 @@ function draw() {
   }
 
   //show and hide spray options
-  if (drawVal == '2') {
+  if (drawVal === '2') {
     a = sprayAlpha.value()
     sprayOptions.style.display = "flex"
     sprayOptions.style.flexDirection = "column"
@@ -497,7 +506,7 @@ function draw() {
     sprayOptions.style.display = "none"
   }
   //spray tool
-  if (mouseIsPressed & drawVal == '2' & saveEditing == false) {
+  if (mouseIsPressed & drawVal === '2' & saveEditing == false) {
     var sDiameter = sprayDiameter.value()/2;
     var sDensity = sprayDensity.value();
     var sDotSize = sprayDotSize.value();
@@ -524,7 +533,7 @@ function draw() {
   //   compressButton.show()
   // }
   //color picker tool
-  if (mouseIsPressed & drawVal == '3' & mouseX>0&mouseX<width&mouseY>0&mouseY<height) {
+  if (mouseIsPressed & drawVal === '3' & mouseX>0&mouseX<width&mouseY>0&mouseY<height) {
     c = get(mouseX, mouseY)
     temp = rgbToHsl()
     document.getElementById("test").value = temp[0]
@@ -626,7 +635,7 @@ function compress() {
     redVal: 1+redChan.value(),
     greenVal: 1+greenChan.value(),
     blueVal: 1+blueChan.value(),
-    saveName: "/"+cmprssName,
+    saveName: cmprssName,
     canvasWidth: width,
     scaleFctr: smpSize.value()
   }
@@ -642,7 +651,7 @@ function returnServedImage() {
   // image(currentImg, 0, 0, width, height)
   setTimeout(function() {
     // loadImage("images/canvas/MyCanvas"+stringNumber+".jpg", function(img) {
-    loadImage("images/canvas/currentCanvas.jpg", function(img) {
+    loadImage("images"+sepr+"canvas"+sepr+"currentCanvas.jpg", function(img) {
     // loadImage("../111/rotate.png", function(img) {
       // blendMode(BLEND)
       selectBlendModeImg()
@@ -710,8 +719,8 @@ function makeGif(){
   var cData2 = {
     trig2:gifOn,
     sendCounter:100,// imgNumber
-    saveName: "/"+gifName+"*",
-    saveNameOut: "/"+gifName
+    saveName: gifName+"*",
+    saveNameOut: gifName
   }
   console.log("it's in gif")
   socket.emit('gif',cData2)

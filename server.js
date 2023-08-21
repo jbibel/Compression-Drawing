@@ -4,6 +4,8 @@ var app = express();
 var gm = require('gm').subClass({
   // imageMagick: true
 });
+var path = require('path');
+
 
 // const imagemin = require('imagemin');
 // const imageminGiflossy = require('imagemin-giflossy');
@@ -15,8 +17,10 @@ var gm = require('gm').subClass({
 // var mkdirp = require('mkdirp')
 
 
-var cnvDir = __dirname + "/public/images/canvas"
-var gifDir = __dirname + "/public/images/gif"
+// var cnvDir = __dirname + "/public/images/canvas"
+var cnvDir = path.join(__dirname,"public","images","canvas")
+// var gifDir = __dirname + "/public/images/gif"
+var gifDir = path.join(__dirname,"public","images","gif")
 
 // var setPuplicDir = "temp"
 
@@ -75,6 +79,8 @@ function newConnection(socket) {
 
   var test
 
+  // console.log(path.normalize(cnvDir+"/"+"thisCanvas"+(String(1 - 1).padStart(5, "0")) + ".jpg"))
+
   // new Promise(function(resolve, reject))
   function triggerMsg(cData) {
     // console.log("got it")
@@ -84,7 +90,8 @@ function newConnection(socket) {
       setTimeout(function() {
 
 
-        gm(cnvDir + cData.saveName + (String(cData.sendNumber - 1).padStart(5, "0")) + ".jpg")
+        // gm(cnvDir + cData.saveName + (String(cData.sendNumber - 1).padStart(5, "0")) + ".jpg")
+        gm(path.normalize(cnvDir+"/"+cData.saveName+(String(cData.sendNumber - 1).padStart(5, "0")) + ".jpg"))
         .monitor()
           .scale(cData.canvasWidth*cData.scaleFctr)
           .modulate(100, 100 + cData.saturationNum)
@@ -101,7 +108,7 @@ function newConnection(socket) {
           // .samplingFactor(2,1)
           .quality(cData.qualityNum)
           // .write(cnvDir + "/MyCanvas" + (String(cData.sendNumber).padStart(5, "0")) + ".jpg", function(err) {
-          .write(cnvDir + "/currentCanvas.jpg", function(err) {
+          .write(path.normalize(cnvDir + "/currentCanvas.jpg"), function(err) {
             if (err) throw err;
           });
 
@@ -120,13 +127,13 @@ function newConnection(socket) {
       new Promise(function(resolve, reject) {
         setTimeout(() => resolve(1), 500);
       }).then(function(result) {
-        gm(cnvDir + cData2.saveName + ".jpg")
+        gm(path.normalize(cnvDir + "/"+cData2.saveName + ".jpg"))
         .scale(360)
         .colors(256)
         .dither(true)
         .delay(1)
         .loop(1)
-          .write(gifDir + cData2.saveNameOut + ".gif", function(err) {
+          .write(path.normalize(gifDir + "/"+cData2.saveNameOut + ".gif"), function(err) {
             if (err) throw err;
           })
       });

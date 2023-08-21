@@ -101,7 +101,9 @@ const createWindow = () => {
 
 
   mainWindow.webContents.session.on("will-download", function(event, item, webContents) {
-    item.setSavePath(__dirname+`/public/images/canvas/${item.getFilename()}`);
+    // item.setSavePath(__dirname+`/public/images/canvas/${item.getFilename()}`);
+    item.setSavePath(path.join(__dirname,'public','images','canvas',`${item.getFilename()}`));
+    // console.log(path.join(__dirname,'public','images','canvas',`${item.getFilename()}`))
     // item.setSavePath(mainDir+`/testing/images/canvas/${item.getFilename()}`);
 });
 
