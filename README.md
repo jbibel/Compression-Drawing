@@ -113,7 +113,8 @@ To view your image files, enter the app directory and head into the `public` fol
 
 # So... can I actually run it
 
-***Update: I am currently looking into an issue with errors that appear when running this on Windows. For that reason I can only be confident that this will only work on macOS for the time being. I will look into fixing it and update it as soon as possible. I apologize for the inconvenience.*** <br>
+***Update: ~~I am currently looking into an issue with errors that appear when running this on Windows. For that reason I can only be confident that this will only work on macOS for the time being. I will look into fixing it and update it as soon as possible. I apologize for the inconvenience.~~ <br>
+I uploaded a fix on August 20th that should fix the Windows issue. If you have a previous version and want to use the new one, delete the old folder and follow the instruction below from step four.***
 
 <details><summary>To the person reading this: possibly! (click for instructions)</summary>
   
