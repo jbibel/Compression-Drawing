@@ -1,4 +1,6 @@
 # Compression Drawing
+*_Please note: This is more of a conceptual art project rather than an actual functional program. It worked for me but your mileage may vary_*
+
 ![Screenshot of my drawing tool Campression Drawing. A highly distorted crop of the painting "Ophelia" by John Everett Millais (A painting of a woman in a dress floating on her back down a stream. The face of the woman in the original has a heavly look of sadness and emptyness). This altered version in the app has her face painted over with a smiley face](/readme-files/screenshots/hello.png)
 
 Compression Drawing is a drawing tool that explores JPEG compression artifacts and recursive image processing.<br>
